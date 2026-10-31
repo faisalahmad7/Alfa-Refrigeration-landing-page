@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { LuArrowRight } from 'react-icons/lu';
+import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 import CTABanner from '../components/CTABanner.jsx';
 import FrostFrame from '../components/FrostFrame.jsx';
 import HowWeWork from '../components/HowWeWork.jsx';
@@ -39,7 +39,7 @@ export default function Services() {
       <nav className="jump" aria-label="On this page">
         <div className="container">
           <ul>
-            {JUMP.map((j) => (<li key={j.href}><a href={j.href}>{j.label}</a></li>))}
+            {JUMP.map((j, index) => (<li key={j.href}><a href={j.href}><span className="jump-number">{String(index + 1).padStart(2, '0')}</span><span className="jump-label">{j.label}</span><LuArrowUpRight size={17} aria-hidden="true" /></a></li>))}
           </ul>
         </div>
       </nav>
