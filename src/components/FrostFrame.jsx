@@ -73,7 +73,7 @@ export default function FrostFrame() {
         const pattern = BRANCH_PATTERNS[patternIndex];
         return (
           <svg
-            className={\`frost-corner frost-corner--\${corner}\`}
+            className={`frost-corner frost-corner--${corner}`}
             viewBox="0 0 52 52"
             key={corner}
             focusable="false"
@@ -81,10 +81,10 @@ export default function FrostFrame() {
             {pattern.map(([kind, d], pathIndex) => (
               <path
                 key={d}
-                className={\`frost-\${kind}\`}
+                className={`frost-${kind}`}
                 d={d}
                 pathLength="1"
-                style={{ '--branch-delay': \`\${(seed + cornerIndex * 83 + pathIndex * 67) % 520}ms\` }}
+                style={{ '--branch-delay': `${(seed + cornerIndex * 83 + pathIndex * 67) % 520}ms` }}
               />
             ))}
           </svg>
