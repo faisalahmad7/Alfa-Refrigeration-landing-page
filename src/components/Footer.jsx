@@ -14,12 +14,11 @@ export default function Footer() {
         <div className="footer-brand">
           <Logo variant="light" />
           <p>
-            Commercial and residential refrigeration products and service in Pune, with {business.experience} years
-            of experience. We specialise in Blue Star refrigeration products.
+            Refrigeration sales, installation and service in Pune, with {business.experience}+ years of experience and a specialist focus on Blue Star products.
           </p>
         </div>
 
-        <nav aria-label="Footer">
+        <nav className="footer-explore" aria-label="Footer">
           <h2 className="footer-title">Explore</h2>
           <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
@@ -29,7 +28,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div>
+        <div className="footer-products">
           <h2 className="footer-title">Products</h2>
           <ul className="footer-links">
             {equipment.slice(0, 6).map((e) => (
@@ -38,7 +37,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="footer-visit">
           <h2 className="footer-title">Visit or call</h2>
           <ul className="footer-contact">
             <li><LuPhone size={16} aria-hidden="true" /><a href={business.phoneHref}>{business.phoneDisplay}</a></li>
