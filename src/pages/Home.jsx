@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { LuArrowRight } from 'react-icons/lu';
+import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CallButton, WhatsAppButton } from '../components/ActionButtons.jsx';
 import CTABanner from '../components/CTABanner.jsx';
 import HowWeWork from '../components/HowWeWork.jsx';
@@ -9,17 +11,18 @@ import Reveal from '../components/Reveal.jsx';
 import Reviews from '../components/Reviews.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ServiceIcon from '../components/ServiceIcon.jsx';
-import useParallax from '../components/useParallax.js';
 import { business } from '../data/business.js';
 import { equipment, experienceLessons, segments, serviceGroups } from '../data/services.js';
 import { usePageMeta } from '../lib/usePageMeta.js';
 import { WA_GENERAL } from '../lib/contact.js';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const TRUST = [
-  { k: '30+ years', v: 'dealing with and servicing refrigeration products' },
-  { k: 'Residential and commercial', v: 'homes, shops, offices and kitchens' },
-  { k: 'Blue Star specialists', v: 'we specialise in all Blue Star refrigeration products' },
-  { k: 'Sales and service', v: 'equipment, installation, maintenance and onsite support' },
+  { k: '30+ years', v: 'working with refrigeration products' },
+  { k: 'Residential + commercial', v: 'homes, shops, offices and kitchens' },
+  { k: 'Blue Star specialists', v: 'specialisation across Blue Star refrigeration' },
+  { k: 'Sales + service', v: 'equipment, setup, maintenance and onsite support' },
 ];
 
 export default function Home() {
@@ -27,51 +30,98 @@ export default function Home() {
     'Alfa Refrigeration Pune | 30+ Years in Refrigeration Sales & Service',
     'Alfa Refrigeration and Air Conditioner, New Nana Peth, Pune. 30+ years with water coolers, deep freezers, ice machines, visi coolers and Blue Star refrigeration products. Sales, installation and service.',
   );
-  const sceneRef = useRef(null);
-  useParallax(sceneRef, 0.1);
+
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const root = heroRef.current;
+    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+
+    const context = gsap.context(() => {
+      const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      intro
+        .fromTo('.hero-kicker', { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.75 })
+        .fromTo('.hero-line', { yPercent: 115, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1, stagger: 0.12 }, '-=0.25')
+        .fromTo('.hero-lead', { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.75 }, '-=0.48')
+        .fromTo('.hero-actions > *', { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, stagger: 0.1 }, '-=0.4')
+        .fromTo('.hero-footnote', { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6 }, '-=0.32')
+        .fromTo('.hero-proof', { x: 28, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.85 }, '-=0.55');
+
+      gsap.to('.hero-scene', {
+        yPercent: -5,
+        ease: 'none',
+        scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: 1 },
+      });
+      gsap.to('.hero-ghost', {
+        y: -48,
+        ease: 'none',
+        scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: 1.2 },
+      });
+    }, root);
+
+    return () => context.revert();
+  }, []);
 
   const [lead, ...rest] = equipment;
 
   return (
     <>
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-scene" ref={sceneRef} aria-hidden="false">
+      <section className="hero hero--editorial" ref={heroRef}>
+        <div className="hero-ghost" aria-hidden="true">ALFA</div>
+        <div className="hero-scene" aria-hidden="true">
           <ShowroomScene />
-          <div className="hero-scene-fade" aria-hidden="true" />
+          <div className="hero-scene-fade" />
         </div>
+        <div className="hero-grid-overlay" aria-hidden="true" />
+        <div className="hero-vertical-note" aria-hidden="true">
+          <span>COMMERCIAL / RESIDENTIAL</span><i /><span>PUNE · EST. EXPERIENCE 30+</span>
+        </div>
+
         <div className="container hero-inner">
           <div className="hero-copy">
+            <p className="hero-kicker"><span className="status-dot" /> REFRIGERATION & AIR CONDITIONING <b>—</b> PUNE</p>
             <h1>
-              <span className="line"><span className="line-in">Three decades of</span></span>
-              <span className="line"><span className="line-in" style={{ '--i': 1 }}>refrigeration</span></span>
-              <span className="line"><span className="line-in" style={{ '--i': 2 }}>expertise.</span></span>
+              <span className="hero-line-wrap"><span className="hero-line">Three decades of</span></span>
+              <span className="hero-line-wrap"><span className="hero-line">refrigeration</span></span>
+              <span className="hero-line-wrap"><span className="hero-line hero-line--accent">expertise.</span></span>
             </h1>
-            <p className="hero-lead rise" style={{ '--i': 3 }}>
-              Alfa Refrigeration and Air Conditioner sells and services commercial and residential
-              refrigeration in Pune, from water coolers and deep freezers to ice machines and visi
-              coolers. We specialise in Blue Star refrigeration products.
+            <p className="hero-lead">
+              Sales, installation and service for commercial and residential refrigeration—backed by
+              more than 30 years of working with the equipment people depend on.
             </p>
-            <div className="hero-actions rise" style={{ '--i': 4 }}>
-              <CallButton className="btn btn-light" />
-              <WhatsAppButton message={WA_GENERAL} className="btn btn-ghost-light" label="WhatsApp us" />
+            <div className="hero-actions">
+              <CallButton className="btn btn-light" label="Call Alfa" />
+              <WhatsAppButton message={WA_GENERAL} className="btn btn-ghost-light" label="Start a WhatsApp enquiry" />
             </div>
-            <p className="hero-motto rise" style={{ '--i': 5 }}>{business.tagline}</p>
+            <div className="hero-footnote">
+              <span className="hero-footnote-mark">“</span>
+              <p>{business.tagline}</p>
+            </div>
           </div>
 
-          <div className="hero-badge rise" style={{ '--i': 3 }}>
-            <span className="hero-badge-num">30+</span>
-            <span className="hero-badge-text">years dealing with and servicing refrigeration products</span>
-          </div>
+          <aside className="hero-proof">
+            <span className="hero-proof-label">EXPERIENCE THAT SHOWS</span>
+            <div className="hero-proof-number">30<span>+</span></div>
+            <p>Years dealing with and servicing refrigeration products</p>
+            <div className="hero-proof-rule" />
+            <span className="hero-proof-location">NEW NANA PETH · PUNE</span>
+          </aside>
+        </div>
+
+        <div className="hero-bottom-bar">
+          <span>01 / ALFA REFRIGERATION</span>
+          <span>PRODUCTS <i /> INSTALLATION <i /> SERVICE</span>
+          <span>SCROLL TO EXPLORE <b>↓</b></span>
         </div>
       </section>
 
-      {/* TRUST FACTS */}
       <section className="trust" aria-label="Alfa Refrigeration at a glance">
         <div className="container">
+          <p className="trust-kicker">THE ALFA DIFFERENCE <span>— BUILT ON EXPERIENCE</span></p>
           <ul className="trust-row">
-            {TRUST.map((t) => (
+            {TRUST.map((t, i) => (
               <li key={t.k}>
+                <small>{String(i + 1).padStart(2, '0')}</small>
                 <strong>{t.k}</strong>
                 <span>{t.v}</span>
               </li>
@@ -80,33 +130,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRODUCTS */}
-      <section className="section">
+      <section className="section product-section">
         <div className="container">
+          <div className="section-rail"><span>01 / EQUIPMENT</span><span>THE RIGHT COLD FOR THE RIGHT SPACE</span></div>
           <SectionHeader
             eyebrow="What we deal in"
-            title="Refrigeration equipment for homes and businesses"
+            title="Purpose-built cooling for everyday business and life."
             lead="From a household water cooler to a commercial ice machine, we sell, install and service the equipment we know best."
           />
-          <div className="bento">
+          <div className="bento bento--showcase">
             <Reveal as="article" className="tile tile--lead">
-              <ProductArt name={lead.art} />
+              <span className="tile-index">01 <i /> FEATURED RANGE</span>
+              <div className="tile-art-wrap"><ProductArt name={lead.art} /></div>
               <div className="tile-copy">
+                <p className="tile-sector">{lead.sector}</p>
                 <h3>{lead.title}</h3>
                 <p>{lead.short}</p>
                 <Link to={`/services#${lead.id}`} className="text-link">
-                  About {lead.title.toLowerCase()} <LuArrowRight size={16} aria-hidden="true" />
+                  Explore this range <LuArrowUpRight size={17} aria-hidden="true" />
                 </Link>
               </div>
             </Reveal>
-            {rest.slice(0, 6).map((item, i) => (
-              <Reveal as="article" className="tile" delay={(i % 3) * 60} key={item.id}>
-                <ProductArt name={item.art} />
+            {rest.map((item, i) => (
+              <Reveal as="article" className="tile" delay={(i % 4) * 75} key={item.id}>
+                <span className="tile-index">{String(i + 2).padStart(2, '0')} <i /> {item.sector}</span>
+                <div className="tile-art-wrap"><ProductArt name={item.art} /></div>
                 <div className="tile-copy">
                   <h3>{item.title}</h3>
                   <p>{item.short}</p>
                   <Link to={`/services#${item.id}`} className="text-link">
-                    Details <LuArrowRight size={16} aria-hidden="true" />
+                    Product details <LuArrowRight size={15} aria-hidden="true" />
                   </Link>
                 </div>
               </Reveal>
@@ -115,97 +168,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EXPERIENCE */}
+      <section className="capability-ribbon" aria-label="Alfa services">
+        <div className="capability-ribbon-track">
+          <span>WATER COOLERS</span><i /><span>DEEP FREEZERS</span><i /><span>VISI COOLERS</span><i /><span>ICE MACHINES</span><i /><span>COMMERCIAL REFRIGERATION</span><i /><span>ONSITE SERVICE</span><i />
+          <span aria-hidden="true">WATER COOLERS</span><i aria-hidden="true" /><span aria-hidden="true">DEEP FREEZERS</span><i aria-hidden="true" /><span aria-hidden="true">VISI COOLERS</span><i aria-hidden="true" /><span aria-hidden="true">ICE MACHINES</span><i aria-hidden="true" /><span aria-hidden="true">COMMERCIAL REFRIGERATION</span><i aria-hidden="true" /><span aria-hidden="true">ONSITE SERVICE</span><i aria-hidden="true" />
+        </div>
+      </section>
+
       <section className="section section--ink experience">
         <div className="container experience-grid">
-          <Reveal className="experience-num" aria-hidden="true">
-            <span>30+</span>
-            <small>years</small>
+          <Reveal className="experience-num">
+            <span>30<span className="experience-plus">+</span></span>
+            <small>years in refrigeration</small>
+            <div className="experience-orbit" aria-hidden="true" />
           </Reveal>
           <div className="experience-copy">
             <SectionHeader
-              eyebrow="Our history"
-              title="Decades of dealing with and servicing refrigeration products"
+              eyebrow="Experience is the difference"
+              title="Decades of knowing the equipment—and what keeps it working."
+              lead="More than thirty years of working with refrigeration products shapes how Alfa advises, supplies and services."
               light
             />
-            <p className="experience-intro">
-              Alfa has spent more than thirty years working with the equipment its customers depend on.
-              That experience shapes how we advise, how we service and how we look after people long
-              after a sale.
-            </p>
-            <ul className="lessons">
-              {experienceLessons.map((l) => (
-                <li key={l.title}>
-                  <h3>{l.title}</h3>
-                  <p>{l.text}</p>
-                </li>
+            <div className="lessons">
+              {experienceLessons.map((l, i) => (
+                <Reveal as="article" className="lesson" delay={i * 90} key={l.title}>
+                  <span className="lesson-index">{String(i + 1).padStart(2, '0')}</span>
+                  <div><h3>{l.title}</h3><p>{l.text}</p></div>
+                </Reveal>
               ))}
-            </ul>
+            </div>
             <Link to="/about" className="btn btn-ghost-light">
-              About Alfa Refrigeration <LuArrowRight size={18} aria-hidden="true" />
+              Discover Alfa <LuArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* RESIDENTIAL / COMMERCIAL */}
-      <section className="section">
+      <section className="section customers-section">
         <div className="container">
+          <div className="section-rail"><span>02 / WHO WE SERVE</span><span>ONE STANDARD OF CARE</span></div>
           <SectionHeader
             eyebrow="Who we serve"
-            title="Residential and commercial customers"
-            lead="The same experienced attention, whether it is one cooler at home or the cold storage that runs a business."
+            title="Different spaces. Different demands. The same attention."
+            lead="The right equipment depends on the space, the workload and the people who rely on it."
           />
           <div className="segments">
             {segments.map((s, i) => (
-              <Reveal as="article" className={`segment segment--${s.id}`} delay={i * 80} key={s.id}>
-                <span className="icon-tile"><ServiceIcon name={s.icon} /></span>
+              <Reveal as="article" className={`segment segment--${s.id}`} delay={i * 100} key={s.id}>
+                <div className="segment-topline"><span>0{i + 1} / CUSTOMER</span><ServiceIcon name={s.icon} size={22} /></div>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
-                <ul>
-                  {s.items.map((it) => (<li key={it}>{it}</li>))}
-                </ul>
+                <ul>{s.items.map((it) => (<li key={it}>{it}</li>))}</ul>
+                <Link to="/services#customers" className="segment-link">Explore support <LuArrowUpRight size={17} /></Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* BLUE STAR */}
-      <section className="section section--tint">
+      <section className="section section--tint blue-star-section">
         <div className="container bluestar">
-          <Reveal className="bluestar-copy">
+          <div className="bluestar-copy">
+            <p className="eyebrow">BLUE STAR SPECIALISATION / 03</p>
             <SectionHeader
-              eyebrow="Blue Star specialisation"
-              title="We specialise in all refrigeration products of Blue Star"
+              eyebrow="A focused specialism"
+              title="Blue Star refrigeration is a part of what we know best."
+              lead="Alfa specialises in Blue Star refrigeration products and has decades of experience dealing with and servicing refrigeration equipment."
+              light
             />
-            <p>
-              Alfa specialises in Blue Star refrigeration products, and has spent decades dealing with and
-              servicing refrigeration equipment. If you are choosing, running or repairing Blue Star
-              equipment, that is a conversation we are well placed to have.
-            </p>
-            <Link to="/services" className="btn btn-primary">
-              See products and services <LuArrowRight size={18} aria-hidden="true" />
+            <Link to="/services" className="btn btn-light">
+              Explore products and services <LuArrowRight size={18} aria-hidden="true" />
             </Link>
-          </Reveal>
-          <Reveal className="bluestar-art" delay={80}>
-            <ProductArt name="cooler" />
+          </div>
+          <div className="bluestar-art">
+            <span className="bluestar-art-label">EQUIPMENT / 01—03</span>
             <ProductArt name="visi" />
-            <ProductArt name="dispenser" />
-          </Reveal>
+            <ProductArt name="freezer" />
+            <ProductArt name="cooler" />
+          </div>
         </div>
       </section>
 
-      {/* SERVICE */}
-      <section className="section">
+      <section className="section service-overview">
         <div className="container">
+          <div className="section-rail"><span>04 / SERVICE & SUPPORT</span><span>FROM SETUP TO AFTERCARE</span></div>
           <SectionHeader
             eyebrow="Service and support"
-            title="Set up properly, then supported for the long run."
+            title="The right setup. Experienced servicing. Support beyond the sale."
           />
           <div className="svc-row">
             {serviceGroups.map((s, i) => (
-              <Reveal as="article" className="svc" delay={i * 70} key={s.id}>
+              <Reveal as="article" className="svc" delay={i * 90} key={s.id}>
+                <span className="svc-count">0{i + 1}</span>
                 <span className="icon-tile"><ServiceIcon name={s.icon} /></span>
                 <h3>{s.title}</h3>
                 <p>{s.lead}</p>
