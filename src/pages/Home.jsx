@@ -78,7 +78,7 @@ export default function Home() {
       <div className="container hero-inner">
         <div className="hero-copy">
           <p className="hero-kicker"><span className="status-dot" /> REFRIGERATION & AIR CONDITIONING <b>—</b> PUNE</p>
-          <h1><span className="hero-line-wrap"><span className="hero-line">Three decades of</span></span><span className="hero-line-wrap"><span className="hero-line hero-line--accent">refrigeration expertise.</span></span></h1>
+          <h1><span className="hero-line-wrap"><span className="hero-line">Three decades of</span></span><span className="hero-line-wrap"><span className="hero-line hero-line--accent">refrigeration expertise</span></span></h1>
           <p className="hero-lead">Sales, installation and service for commercial and residential refrigeration—backed by more than 30 years of working with the equipment people depend on.</p>
           <div className="hero-actions"><CallButton className="btn btn-light" label="Call Alfa" /><WhatsAppButton message={WA_GENERAL} className="btn btn-ghost-light" label="Start a WhatsApp enquiry" /></div>
           <div className="hero-footnote"><span className="hero-footnote-mark">“</span><p>{business.tagline}</p></div>
@@ -115,7 +115,7 @@ export default function Home() {
 
     <section className="trust" aria-label="Alfa Refrigeration at a glance"><div className="container">
       <p className="trust-kicker">THE ALFA DIFFERENCE <span>— BUILT ON EXPERIENCE</span></p>
-      <ul className="trust-row">{TRUST.map((t,i)=><li className={`trust-card trust-card--${t.id}`} key={t.id}><small><b>{String(i+1).padStart(2,'0')}</b>{t.label}</small><strong>{t.k}</strong><span>{t.v}</span></li>)}</ul>
+      <ul className="trust-row">{TRUST.map((t,i)=><li className={`trust-card trust-card--${t.id}`} key={t.id}><small><b>{String(i+1).padStart(2,'0')}</b><em className="trust-label">{t.label}</em></small><strong>{t.k}</strong><span>{t.v}</span></li>)}</ul>
     </div></section>
 
     <section className="section product-section"><div className="container">
@@ -142,7 +142,12 @@ export default function Home() {
     </div></section>
 
     <section className="section section--tint blue-star-section"><div className="container bluestar">
-      <div className="bluestar-copy"><div className="bluestar-kicker"><span>BLUE STAR / SPECIALISTS</span><span>ALFA REFRIGERATION</span></div><SectionHeader eyebrow="A focused specialism" title="Blue Star refrigeration, backed by decades of experience." lead="Alfa specialises in Blue Star refrigeration products, with more than 30 years of experience dealing with and servicing refrigeration equipment." light/><div className="bluestar-highlights" aria-label="Alfa refrigeration strengths"><div><strong>BLUE STAR</strong><span>Specialist focus</span></div><div><strong>30+ YEARS</strong><span>Refrigeration experience</span></div><div><strong>SALES → SERVICE</strong><span>Support across the equipment journey</span></div></div><Link to="/services" className="btn btn-light">Explore products and services <LuArrowRight size={18}/></Link></div>
+      <div className="bluestar-copy"><div className="bluestar-kicker">
+        <a className="bluestar-logo-link" href="https://www.bluestarindia.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Blue Star website">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Blue_Star_primary_logo.png" alt="Blue Star" loading="lazy" decoding="async" />
+        </a>
+        <span className="bluestar-certification">CERTIFIED BLUE STAR SPECIALIST</span>
+      </div><SectionHeader eyebrow="A focused specialism" title="Blue Star refrigeration, backed by decades of experience." lead="Alfa specialises in Blue Star refrigeration products, with more than 30 years of experience dealing with and servicing refrigeration equipment." light/><div className="bluestar-highlights" aria-label="Alfa refrigeration strengths"><div><strong>BLUE STAR</strong><span>Specialist focus</span></div><div><strong>30+ YEARS</strong><span>Refrigeration experience</span></div><div><strong>SALES → SERVICE</strong><span>Support across the equipment journey</span></div></div><Link to="/services" className="btn btn-light">Explore products and services <LuArrowRight size={18}/></Link></div>
       <div className="bluestar-art"><span className="bluestar-art-label">EQUIPMENT / 01—03</span><ProductArt name="visi"/><ProductArt name="freezer"/><ProductArt name="cooler"/></div>
     </div></section>
 
