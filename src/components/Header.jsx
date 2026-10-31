@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { LuMenu, LuX, LuPhone, LuClock, LuMapPin } from 'react-icons/lu';
 import Logo from './Logo.jsx';
@@ -16,16 +16,40 @@ const NAV = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileHidden, setMobileHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const { pathname } = useLocation();
 
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    lastScrollY.current = window.scrollY;
+    setScrolled(window.scrollY > 8);
+
+    const onScroll = () => {
+      const currentY = Math.max(0, window.scrollY);
+      setScrolled(currentY > 8);
+
+      if (window.matchMedia('(min-width: 900px)').matches) {
+        setMobileHidden(false);
+        lastScrollY.current = currentY;
+        return;
+      }
+
+      if (open || currentY < 72) {
+        setMobileHidden(false);
+      } else {
+        const movement = currentY - lastScrollY.current;
+        if (movement > 7) setMobileHidden(true);
+        if (movement < -7) setMobileHidden(false);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open);
@@ -39,7 +63,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}`}>
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}${mobileHidden && !open ? ' is-hidden-mobile' : ''}`}>
       <div className="container header-inner">
         <Logo variant="light" />
 
