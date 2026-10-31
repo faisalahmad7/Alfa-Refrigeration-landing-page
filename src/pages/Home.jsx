@@ -42,6 +42,28 @@ export default function Home() {
         .fromTo('.hero-proof', { x: 28, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .8 }, '-=.48');
       gsap.to('.hero-scene', { yPercent: -5, ease: 'none', scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: 1 } });
       gsap.to('.hero-ghost', { y: -48, ease: 'none', scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: 1.2 } });
+
+      gsap.fromTo('.capability-ribbon-shell', { y: 64, autoAlpha: 0, rotateX: 7 }, {
+        y: 0, autoAlpha: 1, rotateX: 0, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.capability-ribbon', start: 'top 94%', once: true },
+      });
+
+      gsap.utils.toArray('.section-rail').forEach((rail) => {
+        gsap.fromTo(rail, { x: -36, autoAlpha: 0 }, {
+          x: 0, autoAlpha: 1, duration: .8, ease: 'power3.out',
+          scrollTrigger: { trigger: rail, start: 'top 88%', once: true },
+        });
+      });
+
+      gsap.to('.experience-orbit', {
+        rotation: 360, ease: 'none',
+        scrollTrigger: { trigger: '.experience', start: 'top bottom', end: 'bottom top', scrub: 1.3 },
+      });
+
+      gsap.fromTo('.bluestar-art .product-art', { y: 38, autoAlpha: 0, rotate: -4 }, {
+        y: 0, autoAlpha: 1, rotate: 0, duration: 1.1, stagger: .16, ease: 'power3.out',
+        scrollTrigger: { trigger: '.bluestar-art', start: 'top 82%', once: true },
+      });
     }, root);
     return () => ctx.revert();
   }, []);
@@ -66,6 +88,31 @@ export default function Home() {
       <div className="hero-bottom-bar"><span>01 / ALFA REFRIGERATION</span><span>PRODUCTS <i /> INSTALLATION <i /> SERVICE</span><span>SCROLL TO EXPLORE <b>↓</b></span></div>
     </section>
 
+    <section className="capability-ribbon" aria-label="Alfa equipment and service range">
+      <div className="container">
+        <div className="capability-ribbon-shell">
+          <div className="ribbon-intro">
+            <span className="ribbon-index">ALFA / 01</span>
+            <p>ONE TEAM. EVERY DEGREE.</p>
+            <h2>Cold solutions for the way you work.</h2>
+          </div>
+          <div className="ribbon-content">
+            <div className="ribbon-window">
+              <div className="capability-ribbon-track">
+                <span>WATER COOLERS</span><i /><span>DEEP FREEZERS</span><i /><span>VISI COOLERS</span><i /><span>ICE MACHINES</span><i /><span>COMMERCIAL REFRIGERATION</span><i /><span>WATER DISPENSERS</span><i /><span>ONSITE SERVICE</span><i />
+                <span aria-hidden="true">WATER COOLERS</span><i aria-hidden="true" /><span aria-hidden="true">DEEP FREEZERS</span><i aria-hidden="true" /><span aria-hidden="true">VISI COOLERS</span><i aria-hidden="true" /><span aria-hidden="true">ICE MACHINES</span><i aria-hidden="true" /><span aria-hidden="true">COMMERCIAL REFRIGERATION</span><i aria-hidden="true" /><span aria-hidden="true">WATER DISPENSERS</span><i aria-hidden="true" /><span aria-hidden="true">ONSITE SERVICE</span><i aria-hidden="true" />
+              </div>
+            </div>
+            <div className="ribbon-proof">
+              <span><b>30+</b> YEARS OF EXPERIENCE</span>
+              <span><b>BLUE STAR</b> REFRIGERATION SPECIALISATION</span>
+              <span><b>SALES</b> · SETUP · SUPPORT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section className="trust" aria-label="Alfa Refrigeration at a glance"><div className="container">
       <p className="trust-kicker">THE ALFA DIFFERENCE <span>— BUILT ON EXPERIENCE</span></p>
       <ul className="trust-row">{TRUST.map((t,i)=><li key={t.k}><small>{String(i+1).padStart(2,'0')}</small><strong>{t.k}</strong><span>{t.v}</span></li>)}</ul>
@@ -78,11 +125,6 @@ export default function Home() {
         <Reveal as="article" className="tile tile--lead"><span className="tile-index">01 <i /> FEATURED RANGE</span><div className="tile-art-wrap"><ProductArt name={lead.art}/></div><div className="tile-copy"><p className="tile-sector">{lead.sector}</p><h3>{lead.title}</h3><p>{lead.short}</p><Link to={`/services#${lead.id}`} className="text-link">Explore this range <LuArrowUpRight size={17}/></Link></div></Reveal>
         {rest.map((item,i)=><Reveal as="article" className="tile" delay={(i%4)*75} key={item.id}><span className="tile-index">{String(i+2).padStart(2,'0')} <i/> {item.sector}</span><div className="tile-art-wrap"><ProductArt name={item.art}/></div><div className="tile-copy"><h3>{item.title}</h3><p>{item.short}</p><Link to={`/services#${item.id}`} className="text-link">Product details <LuArrowRight size={15}/></Link></div></Reveal>)}
       </div>
-    </div></section>
-
-    <section className="capability-ribbon" aria-label="Alfa services"><div className="capability-ribbon-track">
-      <span>WATER COOLERS</span><i/><span>DEEP FREEZERS</span><i/><span>VISI COOLERS</span><i/><span>ICE MACHINES</span><i/><span>COMMERCIAL REFRIGERATION</span><i/><span>ONSITE SERVICE</span><i/>
-      <span aria-hidden="true">WATER COOLERS</span><i aria-hidden="true"/><span aria-hidden="true">DEEP FREEZERS</span><i aria-hidden="true"/><span aria-hidden="true">VISI COOLERS</span><i aria-hidden="true"/><span aria-hidden="true">ICE MACHINES</span><i aria-hidden="true"/><span aria-hidden="true">COMMERCIAL REFRIGERATION</span><i aria-hidden="true"/><span aria-hidden="true">ONSITE SERVICE</span><i aria-hidden="true"/>
     </div></section>
 
     <section className="section section--ink experience"><div className="container experience-grid">

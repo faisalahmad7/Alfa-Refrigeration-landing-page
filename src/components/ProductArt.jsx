@@ -158,6 +158,8 @@ function IceMachine() {
         return (
           <rect
             key={i}
+            className="ice-cube"
+            style={{ '--cube-delay': `${(i * 137) % 1900}ms` }}
             x={60 + col * 17 + (row % 2) * 6}
             y={206 + row * 12 - (col % 3) * 3}
             width="13"
@@ -168,6 +170,8 @@ function IceMachine() {
           />
         );
       })}
+      <circle className="ice-spark ice-spark--one" cx="76" cy="226" r="2" fill="#fff" />
+      <circle className="ice-spark ice-spark--two" cx="160" cy="238" r="1.6" fill="#fff" />
       <rect x="54" y="112" width="132" height="146" rx="5" fill="url(#a-sheen)" />
       <rect x="50" y="262" width="140" height="10" rx="3" fill="#7d8b97" />
       <rect x="56" y="272" width="16" height="8" rx="2" fill="#25384a" />
@@ -191,6 +195,9 @@ function Cooler() {
       <circle cx="132" cy="114" r="3" fill="#aab8c4" />
       <path d="M104 124h12v6l-3 5h-6l-3-5z" fill="url(#a-steel)" />
       <path d="M124 124h12v6l-3 5h-6l-3-5z" fill="url(#a-steel)" />
+      <path className="water-stream" d="M110 135 C109 140 112 143 110 149" fill="none" stroke="#72d8f5" strokeWidth="2" strokeLinecap="round" />
+      <circle className="water-drop" cx="110" cy="148" r="2.2" fill="#86e5ff" />
+      <path className="water-ripple" d="M101 154 Q110 150 119 154" fill="none" stroke="#72d8f5" strokeWidth="1.4" strokeLinecap="round" />
       <rect x="94" y="164" width="52" height="9" rx="3" fill="url(#a-steel)" />
       {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
         <rect key={i} x="94" y={206 + i * 7} width="52" height="3" rx="1.5" fill="#b3c2ce" />
@@ -216,6 +223,9 @@ function Dispenser() {
       <circle cx="136" cy="176" r="2.6" fill="#aab8c4" />
       <path d="M100 186h12v6l-3 5h-6l-3-5z" fill="url(#a-steel)" />
       <path d="M128 186h12v6l-3 5h-6l-3-5z" fill="url(#a-steel)" />
+      <path className="water-stream water-stream--dispenser" d="M106 197 C105 201 108 205 106 210" fill="none" stroke="#72d8f5" strokeWidth="2" strokeLinecap="round" />
+      <circle className="water-drop water-drop--dispenser" cx="106" cy="208" r="2.1" fill="#86e5ff" />
+      <path className="water-ripple water-ripple--dispenser" d="M98 214 Q106 211 114 214" fill="none" stroke="#72d8f5" strokeWidth="1.3" strokeLinecap="round" />
       <rect x="90" y="220" width="60" height="8" rx="3" fill="url(#a-steel)" />
       <rect x="112" y="142" width="16" height="3" rx="1.5" fill="#7fe6ff" opacity=".85" />
       <rect x="86" y="276" width="14" height="6" rx="2" fill="#25384a" />
@@ -261,12 +271,18 @@ function Split() {
       <circle cx="196" cy="82" r="3" fill="#0a2038" />
       <Led cx={196} cy={82} r={1.8} />
       <Sheen x={16} y={62} w={208} h={72} r={18} />
+      <g className="cooling-air" fill="none" stroke="#8cdff7" strokeWidth="2" strokeLinecap="round">
+        <path d="M192 139 C154 132 116 144 82 139" />
+        <path d="M204 149 C160 143 126 155 94 150" />
+      </g>
       <ellipse cx="120" cy="282" rx="60" ry="8" fill="url(#a-floor)" />
       <rect x="62" y="186" width="116" height="92" rx="8" fill="url(#a-white)" />
       <circle cx="120" cy="232" r="38" fill="#12304f" />
-      {[0, 1, 2].map((i) => (
-        <path key={i} d={`M120 232 L${120 + 34 * Math.cos((i * 2 * Math.PI) / 3 - 1)} ${232 + 34 * Math.sin((i * 2 * Math.PI) / 3 - 1)} A34 34 0 0 1 ${120 + 34 * Math.cos(((i + 0.55) * 2 * Math.PI) / 3 - 1)} ${232 + 34 * Math.sin(((i + 0.55) * 2 * Math.PI) / 3 - 1)} Z`} fill="#5f7d96" opacity=".85" />
-      ))}
+      <g className="fan-rotor">
+        {[0, 1, 2].map((i) => (
+          <path key={i} d={`M120 232 L${120 + 34 * Math.cos((i * 2 * Math.PI) / 3 - 1)} ${232 + 34 * Math.sin((i * 2 * Math.PI) / 3 - 1)} A34 34 0 0 1 ${120 + 34 * Math.cos(((i + 0.55) * 2 * Math.PI) / 3 - 1)} ${232 + 34 * Math.sin(((i + 0.55) * 2 * Math.PI) / 3 - 1)} Z`} fill="#5f7d96" opacity=".85" />
+        ))}
+      </g>
       <circle cx="120" cy="232" r="7" fill="#dfe8ee" />
       <circle cx="120" cy="232" r="38" fill="none" stroke="#c9d6e0" strokeWidth="3" />
       <Sheen x={62} y={186} w={116} h={92} r={8} />
