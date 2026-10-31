@@ -54,7 +54,8 @@ export default function Services() {
           <div className="equip-rows">
             {equipment.map((item, i) => (
               <Reveal as="article" id={item.id} className={`equip-row${i % 2 ? ' is-flip' : ''}`} key={item.id}>
-                <div className="equip-row-art frost-card">\n                  <FrostFrame />
+                <div className="equip-row-art frost-card">
+                  <FrostFrame />
                   <ProductArt name={item.art} />
                 </div>
                 <div className="equip-row-copy">
