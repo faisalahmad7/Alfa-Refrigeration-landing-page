@@ -14,6 +14,7 @@ export default function StickyActions() {
         title="Call Alfa"
       >
         <LuPhone size={21} aria-hidden="true" />
+        <span>Call now</span>
       </a>
       <a
         className="sticky-wa"
@@ -24,6 +25,7 @@ export default function StickyActions() {
         title="WhatsApp Alfa"
       >
         <FaWhatsapp size={23} aria-hidden="true" />
+        <span>WhatsApp</span>
       </a>
     </div>
   );
