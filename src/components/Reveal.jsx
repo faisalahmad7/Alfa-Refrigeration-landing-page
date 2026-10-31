@@ -27,7 +27,7 @@ export default function Reveal({ as: Tag = 'div', delay = 0, className = '', chi
     return () => ctx.revert();
   }, [delay]);
 
-  return <Tag ref={ref} className={\`reveal \${className}\${hasFrost ? ' frost-card' : ''}\`} {...rest}>
+  return <Tag ref={ref} className={`reveal ${className}${hasFrost ? ' frost-card' : ''}`} {...rest}>
     {hasFrost && <FrostFrame />}{children}
   </Tag>;
 }
