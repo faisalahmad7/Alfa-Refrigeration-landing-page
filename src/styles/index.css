@@ -3401,7 +3401,7 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
       transform .28s ease;
     will-change: transform;
   }
-  .site-header.is-hidden-mobile {
+  .site-header.is-hidden-on-scroll {
     transform: translate3d(0, -110%, 0);
     pointer-events: none;
   }
@@ -3581,4 +3581,198 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
     font-size: .61rem;
   }
   .jump a svg { width: 14px; height: 14px; }
+}
+
+
+/* --------------------------------------------------------------------------
+   REQUESTED REFINEMENTS — original experience number, process connectors,
+   readable lessons, high-contrast product backs and desktop quick actions
+   -------------------------------------------------------------------------- */
+
+/* Match the original filled-gradient 30+ treatment from the first design. */
+.home-page .experience-num > span {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 38vw, 20rem);
+  line-height: .82;
+  letter-spacing: -.04em;
+  background: linear-gradient(180deg, #ffffff 0%, var(--glacier) 40%, #4b7ea1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0;
+}
+.home-page .experience-num .experience-plus {
+  padding-top: .05em;
+  font-size: .42em;
+  color: var(--cyan);
+  background: none;
+  -webkit-text-fill-color: var(--cyan);
+  -webkit-text-stroke: 0;
+}
+.home-page .experience-num small {
+  margin-top: 14px;
+  color: var(--glacier);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.05;
+  text-transform: none;
+}
+
+/* Give the three experience lessons their own pale surfaces and dark, readable copy. */
+.home-page .experience .lessons { gap: 10px; }
+.home-page .experience .lesson {
+  padding: 15px 17px;
+  border: 1px solid #b8d5e1 !important;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #edf7fb 0%, #dceef5 100%);
+  box-shadow: 0 6px 18px rgba(0, 12, 22, .12);
+}
+.home-page .experience .lesson-index {
+  color: #087b9d !important;
+  font-weight: 850;
+}
+.home-page .experience .lesson h3 {
+  color: #0a314b !important;
+  font-weight: 800;
+}
+.home-page .experience .lesson p {
+  color: #355a70 !important;
+  opacity: 1;
+  font-size: .91rem;
+  line-height: 1.55;
+}
+
+/* The timeline uses a separate connector for every gap: each segment begins
+   after one number circle and stops before the next number circle. */
+@media (min-width: 1100px) {
+  .home-page .process {
+    --process-step-gap: clamp(16px, 1.7vw, 24px);
+    column-gap: var(--process-step-gap);
+  }
+  .home-page .process::before { display: none !important; }
+  .home-page .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 28px;
+    left: calc(50% + 29px);
+    right: calc(-1 * (50% + var(--process-step-gap) - 29px));
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #47b6d8, #a2edff);
+    box-shadow: 0 0 10px rgba(84, 209, 242, .36);
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: alfa-process-line .62s cubic-bezier(.2, .72, .18, 1) forwards;
+    pointer-events: none;
+  }
+  .home-page .process-step:nth-child(1)::after { animation-delay: .16s; }
+  .home-page .process-step:nth-child(2)::after { animation-delay: .32s; }
+  .home-page .process-step:nth-child(3)::after { animation-delay: .48s; }
+  .home-page .process-step:nth-child(4)::after { animation-delay: .64s; }
+  .home-page .process-step:last-child::after { display: none; }
+}
+
+/* Ensure the product-only front is the only face seen before the flip, and
+   make every piece of copy on the reverse face bright against its navy panel. */
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .home-page .product-card-face {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+  .home-page .product-card-face--front {
+    transform: rotateY(0deg);
+  }
+  .home-page .product-card-face--front .tile-index {
+    display: none !important;
+  }
+  .home-page .product-card-face--back {
+    transform: rotateY(180deg);
+    background:
+      radial-gradient(ellipse at 90% 0%, rgba(49, 173, 211, .2), transparent 52%),
+      linear-gradient(150deg, #0d3854, #061a2b) !important;
+  }
+  .home-page .product-card-face--back .tile-index {
+    color: #d8f3fc !important;
+    -webkit-text-fill-color: #d8f3fc !important;
+    opacity: 1 !important;
+  }
+  .home-page .product-card-face--back .tile-sector {
+    color: #9ceaff !important;
+    -webkit-text-fill-color: #9ceaff !important;
+    opacity: 1 !important;
+  }
+  .home-page .product-card-face--back .tile-copy h3 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+  }
+  .home-page .product-card-face--back .tile-copy p {
+    color: #edf8fc !important;
+    -webkit-text-fill-color: #edf8fc !important;
+    opacity: 1 !important;
+  }
+  .home-page .product-card-face--back .tile-copy .text-link {
+    color: #a4edff !important;
+    -webkit-text-fill-color: #a4edff !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Same circular Call and WhatsApp shortcuts on desktop, fixed at bottom right. */
+@media (min-width: 900px) {
+  .sticky-actions {
+    position: fixed;
+    inset: auto 26px 26px auto;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .sticky-actions a {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    min-height: 54px;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, .95);
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0 7px 20px rgba(0, 19, 33, .32), 0 0 0 3px rgba(255, 255, 255, .12);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .sticky-actions a span { display: none; }
+  .sticky-actions a:hover { transform: translateY(-3px); box-shadow: 0 11px 24px rgba(0, 19, 33, .38), 0 0 0 4px rgba(255, 255, 255, .14); }
+  .sticky-call { background: linear-gradient(145deg, #168eb7, #075478); }
+  .sticky-wa { background: linear-gradient(145deg, #20c76a, #078b49); }
+}
+
+/* Scroll-away behavior is shared by phones and the Services page on desktop. */
+.site-header {
+  transition:
+    background-color .35s,
+    box-shadow .35s,
+    backdrop-filter .35s,
+    transform .28s ease;
+  will-change: transform;
+}
+.site-header.is-hidden-on-scroll {
+  transform: translate3d(0, -110%, 0);
+  pointer-events: none;
+}
+
+/* Keep the original fluid size of the filled numeral on narrow phones too. */
+@media (max-width: 639px) {
+  .home-page .experience-num > span { font-size: clamp(8rem, 38vw, 20rem); }
 }
