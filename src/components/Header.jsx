@@ -39,7 +39,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}`}>
       <div className="container header-inner">
         <Logo variant="light" />
 
