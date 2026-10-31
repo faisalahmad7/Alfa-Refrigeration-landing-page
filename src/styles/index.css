@@ -3444,37 +3444,37 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   body.menu-open .sticky-actions { display: none; }
 
   /* Inner-page heroes: shorter copy, tighter spacing, artwork directly below. */
-  .page-hero.page-hero--editorial {
+  .page-hero {
     min-height: 0;
     padding: calc(var(--header-h) + 24px) 0 34px;
   }
-  .page-hero--editorial .page-hero-grid {
+  .page-hero .page-hero-grid {
     min-height: 0;
     grid-template-columns: minmax(0, 1fr);
     gap: 8px;
   }
-  .page-hero--editorial .page-hero-copy {
+  .page-hero .page-hero-copy {
     position: relative;
     z-index: 2;
   }
-  .page-hero--editorial .page-hero-kicker {
+  .page-hero .page-hero-kicker {
     margin-bottom: 12px;
     font-size: .57rem;
     letter-spacing: .11em;
   }
-  .page-hero--editorial .crumbs {
+  .page-hero .crumbs {
     gap: 8px;
     margin-bottom: 12px;
     font-size: .72rem;
   }
-  .page-hero--editorial h1 {
+  .page-hero h1 {
     max-width: 17ch;
     font-size: clamp(2rem, 8.3vw, 2.62rem);
     line-height: 1;
     letter-spacing: -.025em;
     text-wrap: balance;
   }
-  .page-hero--editorial .page-lead {
+  .page-hero .page-lead {
     max-width: 38ch;
     margin-top: 13px;
     font-size: .91rem;
