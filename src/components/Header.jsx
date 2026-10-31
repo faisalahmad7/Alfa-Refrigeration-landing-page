@@ -24,6 +24,7 @@ export default function Header() {
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
+    setHeaderHidden(false);
     setScrolled(window.scrollY > 8);
 
     const onScroll = () => {
