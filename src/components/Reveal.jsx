@@ -1,33 +1,53 @@
 import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import FrostFrame from './FrostFrame.jsx';
 
-// Gentle fade/rise on scroll. Content stays fully visible if JS fails
-// (the "js" class is only added by index.html) and for reduced-motion users.
+gsap.registerPlugin(ScrollTrigger);
+
+const FROSTABLE = /(?:^|\\s)(?:tile|segment|svc|svc-big|contact-primary|contact-card|form-card|review|lesson|range-item|cta-banner)(?:\\s|$)/;
+
 export default function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
   const ref = useRef(null);
+  const hasFrost = FROSTABLE.test(className);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return undefined;
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || !('IntersectionObserver' in window)) {
-      el.classList.add('is-in');
+    if (reduce) {
+      gsap.set(el, { autoAlpha: 1, y: 0, clearProps: 'filter,transform' });
       return undefined;
     }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('is-in');
-          io.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { autoAlpha: 0, y: 28, filter: 'blur(5px)' },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.9,
+          delay: Math.max(0, delay) / 1000,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 89%',
+            once: true,
+          },
+        },
+      );
+    }, el);
+
+    return () => context.revert();
+  }, [delay]);
 
   return (
-    <Tag ref={ref} className={`reveal ${className}`} style={{ '--d': `${delay}ms` }} {...rest}>
+    <Tag ref={ref} className={`reveal ${className}${hasFrost ? ' frost-card' : ''}`} {...rest}>
+      {hasFrost && <FrostFrame />}
       {children}
     </Tag>
   );
