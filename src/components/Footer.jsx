@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="footer-brand">
           <Logo variant="light" />
           <p>
-            Refrigeration sales, installation and service in Pune, with {business.experience}+ years of experience and a specialist focus on Blue Star products.
+            Refrigeration sales, installation and service in Pune, with {business.experience} years of experience and a specialist focus on Blue Star products.
           </p>
         </div>
 
