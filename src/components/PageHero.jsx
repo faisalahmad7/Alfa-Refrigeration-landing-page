@@ -23,10 +23,15 @@ export default function PageHero({ title, lead, crumb, art, artLabel }) {
     <div className="page-hero-gridlines" aria-hidden="true" />
     <div className="container page-hero-grid">
       <div className="page-hero-copy">
-        <p className="page-hero-kicker"><span className="status-dot" /> ALFA REFRIGERATION <span>/</span> PUNE, INDIA</p>
-        <nav aria-label="Breadcrumb" className="crumbs"><Link to="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">{crumb ?? title}</span></nav>
-        <h1>{title}</h1>{lead && <p className="page-lead">{lead}</p>}
-        <div className="page-hero-meta"><span>30+ YEARS OF EXPERIENCE</span><span>SALES · INSTALLATION · SERVICE</span></div>
+        <div className="page-hero-heading">
+          <p className="page-hero-kicker"><span className="status-dot" /> ALFA REFRIGERATION <span>/</span> PUNE, INDIA</p>
+          <nav aria-label="Breadcrumb" className="crumbs"><Link to="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">{crumb ?? title}</span></nav>
+          <h1>{title}</h1>
+        </div>
+        <div className="page-hero-detail">
+          {lead && <p className="page-lead">{lead}</p>}
+          <div className="page-hero-meta"><span>30+ YEARS OF EXPERIENCE</span><span>SALES · INSTALLATION · SERVICE</span></div>
+        </div>
       </div>
       {art && <div className="page-hero-art-wrap">
         <div className="page-hero-orbit page-hero-orbit--one" /><div className="page-hero-orbit page-hero-orbit--two" />
