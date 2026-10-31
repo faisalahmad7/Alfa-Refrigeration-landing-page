@@ -69,7 +69,7 @@ export default function Home() {
   }, []);
 
   const [lead, ...rest] = equipment;
-  return <>
+  return <div className="home-page">
     <section className="hero hero--editorial" ref={heroRef}>
       <div className="hero-ghost" aria-hidden="true">ALFA</div>
       <div className="hero-scene" aria-hidden="true"><ShowroomScene /><div className="hero-scene-fade" /></div>
@@ -127,7 +127,7 @@ export default function Home() {
       </div>
     </div></section>
 
-    <section className="section section--ink experience"><div className="container experience-grid">
+    <section className="section experience"><div className="container experience-grid">
       <Reveal className="experience-num"><span>30<span className="experience-plus">+</span></span><small>years in refrigeration</small><div className="experience-orbit" aria-hidden="true"/></Reveal>
       <div className="experience-copy"><SectionHeader eyebrow="Experience is the difference" title="Decades of knowing the equipment—and what keeps it working." lead="More than thirty years of working with refrigeration products shapes how Alfa advises, supplies and services." light/>
         <div className="lessons">{experienceLessons.map((l,i)=><Reveal as="article" className="lesson" delay={i*90} key={l.title}><span className="lesson-index">{String(i+1).padStart(2,'0')}</span><div><h3>{l.title}</h3><p>{l.text}</p></div></Reveal>)}</div>
@@ -157,5 +157,5 @@ export default function Home() {
       <div className="svc-row">{serviceGroups.map((s,i)=><Reveal as="article" className="svc" delay={i*90} key={s.id}><span className="svc-count">0{i+1}</span><span className="icon-tile"><ServiceIcon name={s.icon}/></span><h3>{s.title}</h3><p>{s.lead}</p><Link to={`/services#${s.id}`} className="text-link">Learn more <LuArrowRight size={16}/></Link></Reveal>)}</div>
     </div></section>
     <HowWeWork/><Reviews/><CTABanner/>
-  </>;
+  </div>;
 }
