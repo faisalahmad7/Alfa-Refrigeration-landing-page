@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { ArtDefs } from './components/ProductArt.jsx';
+import LoadingScreen from './components/LoadingScreen.jsx';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
@@ -13,6 +14,7 @@ import Services from './pages/Services.jsx';
 export default function App() {
   return (
     <>
+      <LoadingScreen />
       <ArtDefs />
       <ScrollToTop />
       <a className="skip-link" href="#main">Skip to content</a>
