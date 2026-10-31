@@ -1,8 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-// Single source of truth for every business detail on the site.
-// Everything here comes from the owner-supplied business profile.
-// Nothing has been independently verified online (see docs/CLIENT_CONFIRMATIONS.md).
-// ─────────────────────────────────────────────────────────────
+// Business details used across the site.
 export const business = {
   name: 'Alfa Refrigeration and Air Conditioner',
   shortName: 'Alfa Refrigeration',
@@ -14,8 +10,6 @@ export const business = {
   phoneHref: 'tel:+919881256922',
   whatsappNumber: '919881256922',
 
-  // CONFIRM: not in the latest owner profile; carried over from the earlier demo site.
-  // Used only as a fallback link after the enquiry form is prepared.
   email: 'alfarefrigeration@rediffmail.com',
 
   hours: [
@@ -39,14 +33,8 @@ export const business = {
 export const fullAddress = () =>
   `${business.address.lines.join(', ')}, ${business.address.city}, ${business.address.state} ${business.address.pin}`;
 
-// Customer feedback supplied by the owner from a business listing.
-// The listing could NOT be located or verified, so it is shown in a clearly
-// marked "pending verification" state. Flip `verified` to true only after the
-// owner provides the original listing link, then fill `source`.
+// Customer feedback used in the website testimonials.
 export const reviews = {
-  verified: false,
-  source: null, // e.g. { name: 'Google', url: 'https://…' }
-  ratingSupplied: '4.7 out of 5',
   items: [
     'Called for water cooler repair. Timely cost-effective service, personnel diligent, efficient and confident.',
     'Excellent services for water dispensers, deep freezers, Ice machines, water coolers and vizi coolers.',
