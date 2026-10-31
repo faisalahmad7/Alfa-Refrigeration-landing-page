@@ -2138,3 +2138,240 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   outline: 3px solid #a7efff;
   outline-offset: 2px;
 }
+
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE FIT + CONTRAST PASS — contact, service navigation and home cards
+   -------------------------------------------------------------------------- */
+
+/* Keep the contact number inside its dark card at every viewport width. */
+.contact-primary { min-width: 0; }
+.contact-big {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  font-size: clamp(1.2rem, 4.25vw + .25rem, 2.15rem);
+  line-height: 1.18;
+  letter-spacing: -.045em;
+  overflow: hidden;
+}
+.contact-big svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+.contact-big > span {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.contact-big:focus-visible {
+  outline: 3px solid #9beaff;
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+
+/* Let the proof cards grow with their copy instead of clipping long labels. */
+.trust-row .trust-card {
+  min-width: 0;
+  min-height: 196px;
+  height: auto;
+}
+.trust-row .trust-card strong {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  line-height: 1.12;
+}
+.trust-row .trust-card span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+@media (max-width: 639px) {
+  .trust-row .trust-card {
+    min-height: 188px;
+    padding: 15px 12px 18px;
+  }
+  .trust-row .trust-card strong { font-size: clamp(1.05rem, 4.3vw, 1.2rem); }
+  .trust-row .trust-card span { font-size: .82rem; }
+}
+
+/* The featured Water coolers tile needs its dark backdrop to match its white title. */
+.bento--showcase .tile--lead {
+  background:
+    radial-gradient(ellipse at 67% 46%, rgba(81, 178, 216, .28), transparent 47%),
+    linear-gradient(145deg, #0a2a43, #061724) !important;
+  border-color: #183d58 !important;
+  color: rgba(242, 249, 252, .9);
+}
+.bento--showcase .tile--lead .tile-index { color: rgba(231, 247, 253, .82) !important; }
+.bento--showcase .tile--lead .tile-copy h3 { color: #fff !important; }
+.bento--showcase .tile--lead .tile-copy p { color: rgba(239, 248, 252, .84) !important; }
+.bento--showcase .tile--lead .tile-copy .text-link { color: #c8efff !important; }
+.bento--showcase .tile:not(.tile--lead) .tile-copy h3 { color: #092f4e !important; }
+.bento--showcase .tile:not(.tile--lead) .tile-copy p { color: #4c6477 !important; }
+.bento--showcase .tile:not(.tile--lead) .text-link { color: #075f7d !important; }
+
+/* Make the services jump bar read as a prominent, interactive navigation feature. */
+.jump {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 80;
+  overflow: hidden;
+  border-top: 3px solid #69defb;
+  border-bottom: 1px solid rgba(181, 232, 247, .28);
+  background:
+    radial-gradient(ellipse at 50% -50%, rgba(44, 188, 225, .34), transparent 65%),
+    linear-gradient(112deg, #041a2c 0%, #0b4564 53%, #061d31 100%);
+  box-shadow: 0 15px 32px rgba(3, 28, 46, .24);
+}
+.jump .container { max-width: 1320px; padding-block: 12px; }
+.jump-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 0 10px;
+  color: #fff;
+}
+.jump-heading > div { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.jump-kicker {
+  color: #8eeaff;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .17em;
+  white-space: nowrap;
+}
+.jump-heading strong {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: -.01em;
+}
+.jump-hint {
+  color: rgba(224, 246, 253, .74);
+  font-size: .72rem;
+  font-weight: 600;
+}
+.jump ul {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  overflow-x: auto;
+  padding: 0 0 2px;
+  scrollbar-width: none;
+}
+.jump ul::-webkit-scrollbar { display: none; }
+.jump li { min-width: 0; }
+.jump a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  min-height: 68px;
+  height: 100%;
+  padding: 10px 12px;
+  overflow: hidden;
+  border: 1px solid #77d9f2;
+  border-radius: 11px;
+  color: #082b43 !important;
+  background: linear-gradient(140deg, #fff 0%, #dff7ff 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 5px 13px rgba(0, 15, 29, .2);
+  font-size: .84rem;
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  white-space: normal;
+  transition: transform .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.jump a::after {
+  content: "";
+  position: absolute;
+  inset: auto 10px 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, #0b85ae, #74e4fa);
+  opacity: .9;
+}
+.jump-number {
+  display: inline-grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  border: 1px solid #0b7296;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(145deg, #0c789e, #064565);
+  box-shadow: 0 3px 8px rgba(6, 54, 78, .22);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.jump-label { min-width: 0; flex: 1 1 auto; }
+.jump a svg {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: #08769a;
+  transition: transform .22s ease;
+}
+.jump a:hover,
+.jump a:focus-visible {
+  color: #052941 !important;
+  border-color: #fff;
+  background: linear-gradient(140deg, #bcefff 0%, #f5fdff 100%);
+  box-shadow: 0 11px 22px rgba(0, 12, 24, .28);
+}
+.jump a:hover { transform: translateY(-3px); }
+.jump a:hover svg { color: #045979; transform: translate(2px, -2px); }
+.jump a:focus-visible {
+  outline: 3px solid #ffd76b;
+  outline-offset: 3px;
+}
+@media (max-width: 1099px) {
+  .jump ul { display: flex; gap: 9px; }
+  .jump li { flex: 0 0 218px; }
+  .jump a { min-width: 0; max-width: none; }
+}
+@media (max-width: 639px) {
+  .jump .container { padding-block: 9px; }
+  .jump-heading { padding-bottom: 7px; }
+  .jump-heading > div { gap: 9px; }
+  .jump-kicker { font-size: .56rem; }
+  .jump-heading strong { font-size: .88rem; }
+  .jump-hint { display: none; }
+  .jump ul { gap: 8px; padding: 0 0 2px; }
+  .jump li { flex-basis: 205px; }
+  .jump a { min-height: 60px; padding: 9px 10px; font-size: .82rem; }
+  .jump-number { width: 28px; height: 28px; flex-basis: 28px; }
+}
+
+/* Keep section copy readable and balanced across the dark service panels. */
+.section--ink .section-header .section-title { color: #f7fcff !important; }
+.section--ink .section-header .section-lead { color: rgba(238, 248, 252, .86) !important; }
+.section--ink .svc-big h3 { color: #fff !important; }
+.section--ink .svc-big .facts dt { color: #9be9ff !important; }
+.section--ink .svc-big .facts dd { color: rgba(243, 250, 253, .88) !important; }
+.section--ink .section-foot { color: rgba(240, 249, 252, .88) !important; }
+.section--ink .section-foot a { color: #b9efff !important; }
+.section-header .section-title { text-wrap: balance; }
+.section-header .section-lead { max-width: 62ch; line-height: 1.62; }
+.equip-row-copy, .svc-big > div { min-width: 0; }
+.equip-row h3, .svc-big h3 { text-wrap: balance; }
+.equip-row .facts dd, .svc-big .facts dd { line-height: 1.58; overflow-wrap: anywhere; }
+#equipment, #installation, #maintenance, #onsite, #customers {
+  scroll-margin-top: calc(var(--header-h) + 142px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .jump a { transition: none; }
+}
