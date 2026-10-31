@@ -2133,3 +2133,8 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   .loading-brand, .loading-mark .mark-main, .loading-mark .mark-frost, .loading-progress::after { animation: none; }
   .loading-mark .mark-main, .loading-mark .mark-frost { stroke-dashoffset: 0; }
 }
+.jump a:hover { color: #fff; }
+.jump a:focus-visible {
+  outline: 3px solid #a7efff;
+  outline-offset: 2px;
+}
