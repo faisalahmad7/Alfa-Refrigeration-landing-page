@@ -3776,3 +3776,138 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
 @media (max-width: 639px) {
   .home-page .experience-num > span { font-size: clamp(8rem, 38vw, 20rem); }
 }
+
+
+/* PHONE REFINEMENTS — stacked quick contacts, moving services nav and
+   compact two-column inner-page hero headings with product artwork. */
+@media (max-width: 639px) {
+  .sticky-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .page-hero {
+    padding-top: calc(var(--header-h) + 24px);
+    padding-bottom: 28px;
+  }
+  .page-hero .page-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(112px, .85fr);
+    grid-template-areas:
+      "heading art"
+      "detail detail";
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 8px;
+    min-height: 0;
+  }
+  .page-hero .page-hero-copy {
+    display: contents;
+  }
+  .page-hero .page-hero-heading {
+    grid-area: heading;
+    min-width: 0;
+    align-self: center;
+  }
+  .page-hero .page-hero-detail {
+    grid-area: detail;
+    min-width: 0;
+  }
+  .page-hero .page-hero-kicker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+    font-size: .46rem;
+    line-height: 1.35;
+    letter-spacing: .075em;
+  }
+  .page-hero .crumbs {
+    gap: 7px;
+    margin-bottom: 9px;
+    font-size: .64rem;
+    line-height: 1.3;
+  }
+  .page-hero h1 {
+    max-width: none;
+    font-size: clamp(1.72rem, 7vw, 2.28rem);
+    line-height: .99;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+    overflow-wrap: normal;
+  }
+  .page-hero .page-lead {
+    max-width: 54ch;
+    margin-top: 0;
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+  .page-hero-meta {
+    gap: 6px 13px;
+    margin-top: 11px;
+    padding-top: 9px;
+    font-size: .48rem;
+    line-height: 1.35;
+    letter-spacing: .075em;
+  }
+  .page-hero .page-hero-art-wrap {
+    grid-area: art;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 150px;
+    height: 150px;
+    margin: 0;
+    align-self: center;
+  }
+  .page-hero .page-hero-art {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 166px;
+    height: 150px;
+    margin: 0;
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, .3));
+  }
+  .page-hero .page-hero-art .product-art {
+    width: 100%;
+    height: 146px;
+    max-height: 146px;
+    object-fit: contain;
+  }
+  .page-hero .page-hero-orbit--one { width: 132px; }
+  .page-hero .page-hero-orbit--two { width: 102px; }
+  .page-hero .page-hero-art-stamp {
+    right: -2px;
+    bottom: -2px;
+    gap: 5px;
+    font-size: .4rem;
+    letter-spacing: .07em;
+    white-space: nowrap;
+  }
+  .page-hero .page-hero-art-stamp i { width: 15px; }
+  .page-hero-bottom { display: none; }
+}
+
+/* The floating desktop contacts form a vertical pair at the lower right. */
+@media (min-width: 900px) {
+  .sticky-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 11px;
+  }
+}
+
+/* As the mobile header slides away, let the Services quick-nav take its place. */
+@media (max-width: 899px) {
+  .jump {
+    top: var(--header-h);
+    transition: top .28s ease;
+  }
+  body.site-header-hidden .jump {
+    top: 0 !important;
+  }
+}
