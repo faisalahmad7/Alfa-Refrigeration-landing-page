@@ -2995,3 +2995,15 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   .section-dot-item.is-active .section-dot::before { width: 10px; height: 10px; }
   .section-dot-label { padding: 3px 6px; font-size: .58rem; }
 }
+
+
+/* Keep the former featured water-cooler tile consistent with the full product grid. */
+.home-page .bento--showcase .tile--lead {
+  background: linear-gradient(160deg, #fff 0%, #f0f7fa 100%) !important;
+  border-color: #c4d9e5 !important;
+  border-top-color: #178caf !important;
+  color: #163b53 !important;
+}
+.home-page .bento--showcase .tile--lead .tile-index {
+  color: #527286 !important;
+}
