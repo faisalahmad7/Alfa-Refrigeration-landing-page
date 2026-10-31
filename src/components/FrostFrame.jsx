@@ -33,7 +33,7 @@ function BranchGroup({ transform, corner = 'tl' }) {
       {ROOTS.map((root, index) => (
         <path
           key={`${root.d}-${index}`}
-          className={`frost-line frost-line--${root.kind}`}
+          className={`frost-line ${root.kind.split(' ').map((kind) => `frost-line--${kind}`).join(' ')}`}
           d={root.d}
           pathLength="1"
           style={{ '--frost-delay': `${index < 2 ? 0 : 210 + index * 58}ms` }}
