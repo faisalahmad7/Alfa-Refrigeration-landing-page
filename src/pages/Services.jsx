@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LuArrowRight } from 'react-icons/lu';
 import CTABanner from '../components/CTABanner.jsx';
+import FrostFrame from '../components/FrostFrame.jsx';
 import HowWeWork from '../components/HowWeWork.jsx';
 import PageHero from '../components/PageHero.jsx';
 import ProductArt from '../components/ProductArt.jsx';
@@ -53,7 +54,8 @@ export default function Services() {
           <div className="equip-rows">
             {equipment.map((item, i) => (
               <Reveal as="article" id={item.id} className={`equip-row${i % 2 ? ' is-flip' : ''}`} key={item.id}>
-                <div className="equip-row-art">
+                <div className="equip-row-art frost-card">
+                  <FrostFrame />
                   <ProductArt name={item.art} />
                 </div>
                 <div className="equip-row-copy">
