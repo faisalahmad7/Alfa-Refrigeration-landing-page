@@ -5,7 +5,7 @@ import FrostFrame from './FrostFrame.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FROSTABLE = /(?:^|\\s)(?:tile|segment|svc|svc-big|contact-primary|contact-card|form-card|review|lesson|range-item|cta-banner)(?:\\s|$)/;
+const FROSTABLE = /(?:^|\s)(?:tile|segment|svc|svc-big|contact-primary|contact-card|form-card|review|lesson|range-item|cta-banner)(?:\s|$)/;
 
 export default function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
   const ref = useRef(null);
