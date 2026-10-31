@@ -3371,3 +3371,15 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   .home-page .process::before { animation: none; transform: none; }
   .home-page .process-step { transition: none; }
 }
+
+
+/* Ensure the featured card's previous !important tile skin does not sit behind its 3D faces. */
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .home-page .bento--showcase .product-flip-card.tile--lead {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+  }
+  .home-page .product-flip-card:hover .product-art { transform: none; }
+}
