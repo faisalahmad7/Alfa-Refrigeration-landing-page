@@ -16,7 +16,7 @@ const NAV = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileHidden, setMobileHidden] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
   const lastScrollY = useRef(0);
   const { pathname } = useLocation();
 
@@ -30,18 +30,14 @@ export default function Header() {
       const currentY = Math.max(0, window.scrollY);
       setScrolled(currentY > 8);
 
-      if (window.matchMedia('(min-width: 900px)').matches) {
-        setMobileHidden(false);
-        lastScrollY.current = currentY;
-        return;
-      }
+      const isDesktop = window.matchMedia('(min-width: 900px)').matches;
+      const movement = currentY - lastScrollY.current;
 
-      if (open || currentY < 72) {
-        setMobileHidden(false);
+      if (open || currentY < 72 || (isDesktop && pathname !== '/services')) {
+        setHeaderHidden(false);
       } else {
-        const movement = currentY - lastScrollY.current;
-        if (movement > 7) setMobileHidden(true);
-        if (movement < -7) setMobileHidden(false);
+        if (movement > 7) setHeaderHidden(true);
+        if (movement < -7) setHeaderHidden(false);
       }
 
       lastScrollY.current = currentY;
@@ -49,7 +45,7 @@ export default function Header() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [open]);
+  }, [open, pathname]);
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open);
@@ -63,7 +59,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}${mobileHidden && !open ? ' is-hidden-mobile' : ''}`}>
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}${headerHidden && !open ? ' is-hidden-on-scroll' : ''}`}>
       <div className="container header-inner">
         <Logo variant="light" />
 
