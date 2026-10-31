@@ -3911,3 +3911,14 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
     top: 0 !important;
   }
 }
+
+
+/* Header is also hidden on desktop Services: lift the sticky sub-nav there too. */
+@media (min-width: 900px) {
+  .jump {
+    transition: top .28s ease;
+  }
+  body.site-header-hidden .jump {
+    top: 0 !important;
+  }
+}
