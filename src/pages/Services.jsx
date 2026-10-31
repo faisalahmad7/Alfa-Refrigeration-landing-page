@@ -36,10 +36,25 @@ export default function Services() {
         artLabel="Illustration of a glass-door visi cooler"
       />
 
-      <nav className="jump" aria-label="On this page">
+      <nav className="jump" aria-label="Quick navigation through services">
         <div className="container">
+          <div className="jump-heading">
+            <div>
+              <span className="jump-kicker">ALFA / SERVICES</span>
+              <strong>Explore the services</strong>
+            </div>
+            <span className="jump-hint">Choose a category to jump straight to the details</span>
+          </div>
           <ul>
-            {JUMP.map((j, index) => (<li key={j.href}><a href={j.href}><span className="jump-number">{String(index + 1).padStart(2, '0')}</span><span className="jump-label">{j.label}</span><LuArrowUpRight size={17} aria-hidden="true" /></a></li>))}
+            {JUMP.map((j, index) => (
+              <li key={j.href}>
+                <a href={j.href}>
+                  <span className="jump-number">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="jump-label">{j.label}</span>
+                  <LuArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
