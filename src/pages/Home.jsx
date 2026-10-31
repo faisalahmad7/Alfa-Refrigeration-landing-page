@@ -18,10 +18,10 @@ import { WA_GENERAL } from '../lib/contact.js';
 
 gsap.registerPlugin(ScrollTrigger);
 const TRUST = [
-  { k: '30+ years', v: 'working with refrigeration products' },
-  { k: 'Residential + commercial', v: 'homes, shops, offices and kitchens' },
-  { k: 'Blue Star specialists', v: 'specialisation across Blue Star refrigeration' },
-  { k: 'Sales + service', v: 'equipment, setup, maintenance and onsite support' },
+  { id: 'experience', label: 'PROVEN EXPERIENCE', k: '30+ years', v: 'working with refrigeration products' },
+  { id: 'spaces', label: 'FOR EVERY SPACE', k: 'Residential + commercial', v: 'homes, shops, offices and kitchens' },
+  { id: 'bluestar', label: 'SPECIALIST FOCUS', k: 'Blue Star specialists', v: 'specialisation across Blue Star refrigeration' },
+  { id: 'support', label: 'FROM SALE TO SERVICE', k: 'Sales + service', v: 'equipment, setup, maintenance and onsite support' },
 ];
 
 export default function Home() {
@@ -78,7 +78,7 @@ export default function Home() {
       <div className="container hero-inner">
         <div className="hero-copy">
           <p className="hero-kicker"><span className="status-dot" /> REFRIGERATION & AIR CONDITIONING <b>—</b> PUNE</p>
-          <h1><span className="hero-line-wrap"><span className="hero-line">Three decades of</span></span><span className="hero-line-wrap"><span className="hero-line">refrigeration</span></span><span className="hero-line-wrap"><span className="hero-line hero-line--accent">expertise.</span></span></h1>
+          <h1><span className="hero-line-wrap"><span className="hero-line">Three decades of</span></span><span className="hero-line-wrap"><span className="hero-line hero-line--accent">refrigeration expertise.</span></span></h1>
           <p className="hero-lead">Sales, installation and service for commercial and residential refrigeration—backed by more than 30 years of working with the equipment people depend on.</p>
           <div className="hero-actions"><CallButton className="btn btn-light" label="Call Alfa" /><WhatsAppButton message={WA_GENERAL} className="btn btn-ghost-light" label="Start a WhatsApp enquiry" /></div>
           <div className="hero-footnote"><span className="hero-footnote-mark">“</span><p>{business.tagline}</p></div>
@@ -115,7 +115,7 @@ export default function Home() {
 
     <section className="trust" aria-label="Alfa Refrigeration at a glance"><div className="container">
       <p className="trust-kicker">THE ALFA DIFFERENCE <span>— BUILT ON EXPERIENCE</span></p>
-      <ul className="trust-row">{TRUST.map((t,i)=><li key={t.k}><small>{String(i+1).padStart(2,'0')}</small><strong>{t.k}</strong><span>{t.v}</span></li>)}</ul>
+      <ul className="trust-row">{TRUST.map((t,i)=><li className={`trust-card trust-card--${t.id}`} key={t.id}><small><b>{String(i+1).padStart(2,'0')}</b>{t.label}</small><strong>{t.k}</strong><span>{t.v}</span></li>)}</ul>
     </div></section>
 
     <section className="section product-section"><div className="container">
@@ -142,7 +142,7 @@ export default function Home() {
     </div></section>
 
     <section className="section section--tint blue-star-section"><div className="container bluestar">
-      <div className="bluestar-copy"><p className="eyebrow">BLUE STAR SPECIALISATION / 03</p><SectionHeader eyebrow="A focused specialism" title="Blue Star refrigeration is a part of what we know best." lead="Alfa specialises in Blue Star refrigeration products and has decades of experience dealing with and servicing refrigeration equipment." light/><Link to="/services" className="btn btn-light">Explore products and services <LuArrowRight size={18}/></Link></div>
+      <div className="bluestar-copy"><div className="bluestar-kicker"><span>BLUE STAR / SPECIALISTS</span><span>ALFA REFRIGERATION</span></div><SectionHeader eyebrow="A focused specialism" title="Blue Star refrigeration, backed by decades of experience." lead="Alfa specialises in Blue Star refrigeration products, with more than 30 years of experience dealing with and servicing refrigeration equipment." light/><div className="bluestar-highlights" aria-label="Alfa refrigeration strengths"><div><strong>BLUE STAR</strong><span>Specialist focus</span></div><div><strong>30+ YEARS</strong><span>Refrigeration experience</span></div><div><strong>SALES → SERVICE</strong><span>Support across the equipment journey</span></div></div><Link to="/services" className="btn btn-light">Explore products and services <LuArrowRight size={18}/></Link></div>
       <div className="bluestar-art"><span className="bluestar-art-label">EQUIPMENT / 01—03</span><ProductArt name="visi"/><ProductArt name="freezer"/><ProductArt name="cooler"/></div>
     </div></section>
 
