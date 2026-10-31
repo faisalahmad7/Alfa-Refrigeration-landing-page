@@ -155,8 +155,8 @@ export default function Contact() {
               <Field id="message" label="Equipment or requirement details">
                 <textarea rows="4" placeholder="e.g. deep freezer not cooling, or looking for a visi cooler for a shop" {...a11y('message')} />
               </Field>
-              <button type="submit" className="btn btn-whatsapp btn-block">
-                <FaWhatsapp size={19} aria-hidden="true" /> Continue in WhatsApp
+              <button type="submit" className="btn btn-whatsapp btn-block contact-send-btn" aria-label="Send enquiry using WhatsApp">
+                <FaWhatsapp size={19} aria-hidden="true" /> Send enquiry
               </button>
             </form>
 
@@ -175,17 +175,6 @@ export default function Contact() {
             )}
             <p className="form-alt">Prefer to talk? Call <a href={business.phoneHref}>{business.phoneDisplay}</a>.</p>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="section section--tint">
-        <div className="container">
-          <SectionHeader eyebrow="Next steps" title="What happens after you get in touch" />
-          <ol className="next-steps">
-            <Reveal as="li"><h3>You tell us what you need</h3><p>Equipment, installation, servicing or a general question: share the details by call, WhatsApp or the form.</p></Reveal>
-            <Reveal as="li" delay={60}><h3>We talk it through</h3><p>We discuss the requirement with you and confirm what the next step is.</p></Reveal>
-            <Reveal as="li" delay={120}><h3>We arrange it with you</h3><p>The right product or service is arranged, onsite where that applies.</p></Reveal>
-          </ol>
         </div>
       </section>
 
@@ -210,6 +199,17 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <section className="section section--tint">
+        <div className="container">
+          <SectionHeader eyebrow="Next steps" title="What happens after you get in touch" />
+          <ol className="next-steps">
+            <Reveal as="li"><h3>You tell us what you need</h3><p>Equipment, installation, servicing or a general question: share the details by call, WhatsApp or the form.</p></Reveal>
+            <Reveal as="li" delay={60}><h3>We talk it through</h3><p>We discuss the requirement with you and confirm what the next step is.</p></Reveal>
+            <Reveal as="li" delay={120}><h3>We arrange it with you</h3><p>The right product or service is arranged, onsite where that applies.</p></Reveal>
+          </ol>
+        </div>
+      </section>
+
     </>
   );
 }
