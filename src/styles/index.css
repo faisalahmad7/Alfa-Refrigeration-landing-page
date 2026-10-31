@@ -1805,8 +1805,7 @@ body { font-size: 1.04rem; }
   .footer-contact li { gap: 8px; }
   .footer-contact li:nth-child(2) { display: none; }
   .footer-contact address .block { display: inline; }
-  .footer-contact address .block:first-child::after { content: ", "; }
-  .footer-contact address .block:not(:first-child) { display: none; }
+  .footer-contact address .block:not(:last-child)::after { content: ", "; }
   .footer-bottom {
     grid-template-columns: 1fr;
     gap: 7px;
@@ -1817,7 +1816,7 @@ body { font-size: 1.04rem; }
   .footer-bottom p:nth-child(2) { font-size: .66rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .capability-ribbon-track { animation: ribbon-drift 34s linear infinite !important; }
+  .capability-ribbon-track { animation: none !important; }
   .trust-row .trust-card { transition: none; }
   .frost-frame path { transition: none; }
 }
