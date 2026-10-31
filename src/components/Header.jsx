@@ -23,6 +23,12 @@ export default function Header() {
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
+    document.body.classList.toggle('site-header-hidden', headerHidden && !open);
+  }, [headerHidden, open]);
+
+  useEffect(() => () => document.body.classList.remove('site-header-hidden'), []);
+
+  useEffect(() => {
     lastScrollY.current = window.scrollY;
     setHeaderHidden(false);
     setScrolled(window.scrollY > 8);
