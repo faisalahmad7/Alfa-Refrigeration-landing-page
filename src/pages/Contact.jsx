@@ -97,7 +97,7 @@ export default function Contact() {
             <Reveal className="contact-primary">
               <h2>Fastest way to reach us</h2>
               <a className="contact-big" href={business.phoneHref}>
-                <LuPhone size={26} aria-hidden="true" /> {business.phoneDisplay}
+                <LuPhone size={24} aria-hidden="true" /> <span>{business.phoneDisplay}</span>
               </a>
               <div className="contact-actions">
                 <a className="btn btn-primary" href={business.phoneHref}>
