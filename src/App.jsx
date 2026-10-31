@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import StickyActions from './components/StickyActions.jsx';
+import SectionDotNav from './components/SectionDotNav.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Home from './pages/Home.jsx';
@@ -30,6 +31,7 @@ export default function App() {
       </main>
       <Footer />
       <StickyActions />
+      <SectionDotNav />
     </>
   );
 }
