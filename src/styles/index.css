@@ -573,3 +573,71 @@ h3 { font-size: 1.2rem; font-weight: 650; color: var(--ink); line-height: 1.3; l
   .contact-grid { grid-template-columns: 5fr 6fr; gap: 40px; }
 }
 @media (max-width: 899px) { body { padding-bottom: 72px; } }
+
+
+/* ---------- frost bloom hover details ---------- */
+/* Restrained, decorative ice crystals bloom on interactive refrigeration
+   product/service panels. The effect is hover/focus only, never on touch. */
+@media (hover: hover) and (pointer: fine) {
+  .tile,
+  .svc,
+  .svc-big,
+  .equip-row-art,
+  .segment {
+    isolation: isolate;
+  }
+
+  .tile::after,
+  .svc::after,
+  .svc-big::after,
+  .equip-row-art::after,
+  .segment::after {
+    content: "❄";
+    position: absolute;
+    z-index: -1;
+    right: 18px;
+    top: 14px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    color: rgba(53, 195, 232, 0.0);
+    text-shadow: 0 0 0 rgba(191, 227, 242, 0);
+    transform: scale(0.45) rotate(-24deg);
+    transform-origin: center;
+    pointer-events: none;
+    transition: color 0.45s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.1, 1),
+      text-shadow 0.55s ease;
+  }
+
+  .tile:hover::after,
+  .tile:focus-within::after,
+  .svc:hover::after,
+  .svc:focus-within::after,
+  .svc-big:hover::after,
+  .svc-big:focus-within::after,
+  .equip-row-art:hover::after,
+  .equip-row-art:focus-within::after,
+  .segment:hover::after,
+  .segment:focus-within::after {
+    color: rgba(53, 195, 232, 0.26);
+    text-shadow: 0 0 24px rgba(53, 195, 232, 0.22);
+    transform: scale(1) rotate(0deg);
+  }
+
+  .tile:hover,
+  .svc:hover,
+  .svc-big:hover,
+  .equip-row-art:hover,
+  .segment:hover {
+    border-color: rgba(53, 195, 232, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile::after,
+  .svc::after,
+  .svc-big::after,
+  .equip-row-art::after,
+  .segment::after {
+    transition: none !important;
+  }
+}
