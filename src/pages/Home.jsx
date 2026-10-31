@@ -122,12 +122,45 @@ export default function Home() {
       <div className="section-rail"><span>01 / EQUIPMENT</span><span>THE RIGHT COLD FOR THE RIGHT SPACE</span></div>
       <SectionHeader eyebrow="What we deal in" title="Purpose-built cooling for everyday business and life." lead="From a household water cooler to a commercial ice machine, we sell, install and service the equipment we know best." />
       <div className="bento bento--showcase">
-        <Reveal as="article" className="tile tile--lead"><span className="tile-index">01 <i /> FEATURED RANGE</span><div className="tile-art-wrap"><ProductArt name={lead.art}/></div><div className="tile-copy"><p className="tile-sector">{lead.sector}</p><h3>{lead.title}</h3><p>{lead.short}</p><Link to={`/services#${lead.id}`} className="text-link">Explore this range <LuArrowUpRight size={17}/></Link></div></Reveal>
-        {rest.map((item,i)=><Reveal as="article" className="tile" delay={(i%4)*75} key={item.id}><span className="tile-index">{String(i+2).padStart(2,'0')} <i/> {item.sector}</span><div className="tile-art-wrap"><ProductArt name={item.art}/></div><div className="tile-copy"><h3>{item.title}</h3><p>{item.short}</p><Link to={`/services#${item.id}`} className="text-link">Product details <LuArrowRight size={15}/></Link></div></Reveal>)}
+        <Reveal as="article" className="tile tile--lead product-flip-card" aria-label={`${lead.title}: hover for product details`}>
+          <div className="product-flip-inner">
+            <div className="product-card-face product-card-face--front">
+              <span className="tile-index">01 <i /> FEATURED RANGE</span>
+              <div className="tile-art-wrap"><ProductArt name={lead.art}/></div>
+              <h3>{lead.title}</h3>
+            </div>
+            <div className="product-card-face product-card-face--back">
+              <span className="tile-index">01 <i /> FEATURED RANGE</span>
+              <div className="tile-copy">
+                <p className="tile-sector">{lead.sector}</p>
+                <h3>{lead.title}</h3>
+                <p>{lead.short}</p>
+                <Link to={`/services#${lead.id}`} className="text-link">Product details <LuArrowUpRight size={17}/></Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+        {rest.map((item,i)=><Reveal as="article" className="tile product-flip-card" delay={(i%4)*75} key={item.id} aria-label={`${item.title}: hover for product details`}>
+          <div className="product-flip-inner">
+            <div className="product-card-face product-card-face--front">
+              <span className="tile-index">{String(i+2).padStart(2,'0')} <i/> {item.sector}</span>
+              <div className="tile-art-wrap"><ProductArt name={item.art}/></div>
+              <h3>{item.title}</h3>
+            </div>
+            <div className="product-card-face product-card-face--back">
+              <span className="tile-index">{String(i+2).padStart(2,'0')} <i/> {item.sector}</span>
+              <div className="tile-copy">
+                <h3>{item.title}</h3>
+                <p>{item.short}</p>
+                <Link to={`/services#${item.id}`} className="text-link">Product details <LuArrowRight size={15}/></Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>)}
       </div>
     </div></section>
 
-    <section className="section experience"><div className="container experience-grid">
+    <section className="section section--ink experience"><div className="container experience-grid">
       <Reveal className="experience-num"><span>30<span className="experience-plus">+</span></span><small>years in refrigeration</small><div className="experience-orbit" aria-hidden="true"/></Reveal>
       <div className="experience-copy"><SectionHeader eyebrow="Experience is the difference" title="Decades of knowing the equipment—and what keeps it working." lead="More than thirty years of working with refrigeration products shapes how Alfa advises, supplies and services." light/>
         <div className="lessons">{experienceLessons.map((l,i)=><Reveal as="article" className="lesson" delay={i*90} key={l.title}><span className="lesson-index">{String(i+1).padStart(2,'0')}</span><div><h3>{l.title}</h3><p>{l.text}</p></div></Reveal>)}</div>
