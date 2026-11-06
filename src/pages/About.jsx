@@ -27,23 +27,33 @@ export default function About() {
       />
 
       <section className="section">
-        <div className="container story">
-          <Reveal className="story-lead">
-            <p className="big-num" aria-hidden="true">30+</p>
-            <SectionHeader eyebrow="Who we are" title="An established refrigeration business, built on service" />
+        <div className="container about-vm">
+          <Reveal className="vm-row">
+            <h2 className="vm-title">Our Vision</h2>
+            <div className="vm-content">
+              <p className="vm-lead">
+                To be Pune’s most trusted name in refrigeration and air-conditioning, keeping every
+                business we serve cool, running and worry-free. For us, trust comes first, and we
+                earn it with every job we do.
+              </p>
+            </div>
           </Reveal>
-          <Reveal className="story-body" delay={60}>
-            <p className="drop">
-              Alfa Refrigeration deals with commercial and residential refrigeration services and
-              products: water coolers, water dispensers, ice cube makers, deep freezers, commercial
-              refrigerators, visi coolers and more. We have over 30 years of experience in dealing
-              with and servicing refrigeration products.
-            </p>
-            <p>
-              We specialise in all refrigeration products of Blue Star. We also supply split and
-              window air conditioners, and look after installation, maintenance and onsite support
-              for the equipment we sell and the equipment our customers already own.
-            </p>
+
+          <Reveal className="vm-row" delay={60}>
+            <h2 className="vm-title">Our Mission</h2>
+            <div className="vm-content">
+              <p>
+                Alfa Refrigeration began in 1994 with a simple promise: do honest work and take care
+                of our customers. Our experienced technicians use only genuine parts and aim to
+                close every complaint on the same day, so your work never stops for long. We want to
+                keep growing with our customers’ support and reach more areas, while staying the
+                same dependable team you have always known.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal as="blockquote" className="vm-quote" delay={90}>
+            “Genuine work. Reliable service. Trusted since 1994.”
           </Reveal>
         </div>
       </section>

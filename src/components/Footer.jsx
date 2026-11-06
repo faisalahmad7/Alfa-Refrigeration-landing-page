@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-top">
-        <p className="footer-motto">{business.tagline}</p>
+        <p className="footer-motto">“Genuine work. Reliable service. Trusted since 1994.”</p>
       </div>
       <div className="container footer-grid">
         <div className="footer-brand">

@@ -2941,40 +2941,40 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   .site-footer .footer-bottom { gap: 12px; padding-block: 12px; font-size: .7rem; }
 }
 
-/* Five low-profile homepage dots; only the dots accept clicks. */
-.section-dot-nav { right: 12px; z-index: 120; background: transparent; }
-.section-dot-nav ol { gap: 5px; padding: 4px 0; }
-.section-dot-item { min-height: 25px; gap: 7px; }
+/* Five homepage dots; only the dots accept clicks. */
+.section-dot-nav { right: 14px; z-index: 120; background: transparent; }
+.section-dot-nav ol { gap: 8px; padding: 4px 0; }
+.section-dot-item { min-height: 36px; gap: 10px; }
 .section-dot {
-  flex-basis: 26px;
-  width: 26px;
-  height: 26px;
+  flex-basis: 36px;
+  width: 36px;
+  height: 36px;
   background: transparent;
   box-shadow: none;
 }
 .section-dot::before {
-  width: 8px;
-  height: 8px;
-  border: 1px solid rgba(243, 250, 253, .92);
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid rgba(243, 250, 253, .92);
   background: rgba(11, 61, 87, .58);
   box-shadow: 0 1px 5px rgba(0, 13, 26, .32), 0 0 0 1px rgba(255,255,255,.28);
 }
 .section-dot-item.is-active .section-dot::before {
-  width: 11px;
-  height: 11px;
+  width: 18px;
+  height: 18px;
   border: 2px solid #f5fcff;
   background: #38b8df;
-  box-shadow: 0 0 0 3px rgba(56, 184, 223, .2), 0 1px 7px rgba(0, 13, 26, .35);
+  box-shadow: 0 0 0 4px rgba(56, 184, 223, .2), 0 1px 7px rgba(0, 13, 26, .35);
 }
 .section-dot-label {
-  max-width: 90px;
-  padding: 4px 7px;
+  max-width: 130px;
+  padding: 6px 11px;
   border: 1px solid rgba(194, 225, 238, .24);
-  border-radius: 4px;
+  border-radius: 5px;
   color: #f6fbff;
-  background: rgba(5, 32, 49, .76);
+  background: rgba(5, 32, 49, .82);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
-  font-size: .61rem;
+  font-size: .8rem;
   font-weight: 700;
   letter-spacing: .015em;
   opacity: 0;
@@ -2983,17 +2983,17 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
 .section-dot-item.is-active .section-dot-label,
 .section-dot:hover ~ .section-dot-label,
 .section-dot:focus-visible ~ .section-dot-label {
-  opacity: .92;
+  opacity: .95;
   transform: none;
 }
 @media (max-width: 639px) {
   .section-dot-nav { right: 4px; }
-  .section-dot-nav ol { gap: 3px; }
-  .section-dot-item { min-height: 22px; }
-  .section-dot { flex-basis: 23px; width: 23px; height: 23px; }
-  .section-dot::before { width: 7px; height: 7px; }
-  .section-dot-item.is-active .section-dot::before { width: 10px; height: 10px; }
-  .section-dot-label { padding: 3px 6px; font-size: .58rem; }
+  .section-dot-nav ol { gap: 4px; }
+  .section-dot-item { min-height: 30px; }
+  .section-dot { flex-basis: 30px; width: 30px; height: 30px; }
+  .section-dot::before { width: 10px; height: 10px; }
+  .section-dot-item.is-active .section-dot::before { width: 14px; height: 14px; }
+  .section-dot-label { padding: 4px 8px; font-size: .7rem; }
 }
 
 
@@ -3637,7 +3637,11 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
 }
 .home-page .experience .lesson h3 {
   color: #0a314b !important;
+  font-family: var(--font-body);   /* sans-serif font that actually has bold weights */
   font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 .home-page .experience .lesson p {
   color: #355a70 !important;
@@ -3921,4 +3925,46 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   body.site-header-hidden .jump {
     top: 0 !important;
   }
+}
+
+
+/* About page: vision and mission rows (title left, content right) */
+.about-vm { max-width: 1060px; }
+.vm-row {
+  display: grid;
+  gap: 14px;
+  padding: clamp(26px, 4vw, 44px) 0;
+  border-top: 1px solid var(--line);
+}
+.vm-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.4rem);
+  line-height: 1.05;
+}
+.vm-content { display: grid; gap: 18px; max-width: 66ch; }
+.vm-content p { margin: 0; color: var(--ink); font-size: 1.28rem; font-weight: 500; line-height: 1.7; }
+.vm-quote {
+  margin: 8px 0 0;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid #38b8df;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+}
+@media (min-width: 800px) {
+  .vm-row { grid-template-columns: 4fr 8fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+}
+
+/* Footer motto: centred in the footer */
+.site-footer .footer-top { text-align: center; }
+.site-footer .footer-motto {
+  max-width: none;
+  margin-inline: auto;
+  text-align: center;
 }
