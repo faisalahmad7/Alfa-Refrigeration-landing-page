@@ -3968,3 +3968,115 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   margin-inline: auto;
   text-align: center;
 }
+
+/* About page: experience cards sit on a light background, so give them dark, readable text.
+   (The generic .lesson rules were written for the dark home-page section.) */
+.lesson-cols .lesson {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+}
+.lesson-cols .lesson h3 {
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 1.3rem + .9vw, 2rem);
+  line-height: 1.1;
+}
+.lesson-cols .lesson p {
+  max-width: 38ch;
+  color: #355a70;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* About page: featured motto band (dark, glowing, with highlighted words) */
+.motto-band.motto-band--feature {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(72px, 10vw, 132px);
+  border-block: 0;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 0%, rgba(53, 195, 232, .24), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 90% 100%, rgba(47, 135, 176, .28), transparent 60%),
+    linear-gradient(135deg, #061522, #0c2b43 60%, #061522);
+}
+.motto-band--feature::before,
+.motto-band--feature::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(195, 231, 246, .09);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.motto-band--feature::before { width: min(560px, 90vw); aspect-ratio: 1; }
+.motto-band--feature::after { width: min(900px, 150vw); aspect-ratio: 1; border-color: rgba(195, 231, 246, .06); }
+.motto-band--feature .container { position: relative; z-index: 1; }
+.motto-band--feature .motto-fig { margin: 0; }
+.motto-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(115, 217, 247, .45);
+  border-radius: 50%;
+  color: #73d9f7;
+  background: rgba(115, 217, 247, .1);
+  box-shadow: 0 0 0 8px rgba(115, 217, 247, .06), 0 0 40px rgba(53, 195, 232, .3);
+}
+.motto-eyebrow {
+  margin: 22px 0 18px;
+  color: #8bdef4;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+.motto-band--feature .motto-fig blockquote {
+  max-width: 20ch;
+  margin: 0 auto;
+  color: #fff;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(2.3rem, 1.4rem + 3.8vw, 4.6rem);
+  line-height: 1.08;
+}
+.motto-band--feature .motto-fig blockquote em {
+  font-style: italic;
+  background: linear-gradient(90deg, #8bdef4, #35c3e8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #35c3e8;
+}
+.motto-rule {
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 1px;
+  margin: 34px auto 22px;
+  background: linear-gradient(90deg, transparent, #73d9f7, transparent);
+}
+.motto-rule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #73d9f7;
+  box-shadow: 0 0 12px #35c3e8;
+}
+.motto-band--feature .motto-fig figcaption {
+  max-width: 52ch;
+  margin: 0 auto;
+  color: rgba(226, 241, 249, .8);
+  font-size: 1.05rem;
+}

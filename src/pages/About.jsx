@@ -1,13 +1,9 @@
-import { LuArrowRight } from 'react-icons/lu';
-import { Link } from 'react-router-dom';
+import { LuSnowflake } from 'react-icons/lu';
 import CTABanner from '../components/CTABanner.jsx';
 import PageHero from '../components/PageHero.jsx';
-import ProductArt from '../components/ProductArt.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
-import ServiceIcon from '../components/ServiceIcon.jsx';
-import { business } from '../data/business.js';
-import { equipment, experienceLessons, segments } from '../data/services.js';
+import { experienceLessons } from '../data/services.js';
 import { usePageMeta } from '../lib/usePageMeta.js';
 
 export default function About() {
@@ -59,10 +55,15 @@ export default function About() {
       </section>
 
       {/* MOTTO */}
-      <section className="motto-band">
+      <section className="motto-band motto-band--feature">
         <div className="container">
-          <Reveal as="figure">
-            <blockquote>{business.tagline}</blockquote>
+          <Reveal as="figure" className="motto-fig">
+            <span className="motto-icon" aria-hidden="true"><LuSnowflake size={28} /></span>
+            <p className="motto-eyebrow">Our motto</p>
+            <blockquote>
+              Our commitment to <em>customer satisfaction</em> is our Motto.
+            </blockquote>
+            <span className="motto-rule" aria-hidden="true" />
             <figcaption>
               The motto behind how we advise, sell and service our customers.
             </figcaption>
@@ -86,46 +87,6 @@ export default function About() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* SPECIALISM */}
-      <section className="section section--tint">
-        <div className="container">
-          <SectionHeader
-            eyebrow="What we specialise in"
-            title="The range we deal in"
-            lead="Residential and commercial refrigeration, with Blue Star at the centre of what we know."
-          />
-          <ul className="range-grid">
-            {equipment.map((e, i) => (
-              <Reveal as="li" className="range-item" delay={(i % 4) * 50} key={e.id}>
-                <ProductArt name={e.art} />
-                <span>{e.title}</span>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* WHO WE SERVE */}
-      <section className="section">
-        <div className="container">
-          <SectionHeader eyebrow="Who we serve" title="People and businesses who depend on cold" />
-          <div className="segments">
-            {segments.map((s, i) => (
-              <Reveal as="article" className={`segment segment--${s.id}`} delay={i * 80} key={s.id}>
-                <span className="icon-tile"><ServiceIcon name={s.icon} /></span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </Reveal>
-            ))}
-          </div>
-          <p className="section-foot">
-            <Link to="/services" className="text-link">
-              Explore products and services <LuArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </p>
         </div>
       </section>
 
