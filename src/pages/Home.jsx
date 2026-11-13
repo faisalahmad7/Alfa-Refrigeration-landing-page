@@ -177,7 +177,7 @@ export default function Home() {
     <section className="section section--tint blue-star-section"><div className="container bluestar">
       <div className="bluestar-copy"><div className="bluestar-kicker">
         <a className="bluestar-logo-link" href="https://www.bluestarindia.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Blue Star website">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Blue_Star_primary_logo.png" alt="Blue Star" loading="lazy" decoding="async" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Blue_Star_primary_logo.png" alt="Blue Star" width="226" height="54" loading="lazy" decoding="async" />
         </a>
         <span className="bluestar-certification">CERTIFIED BLUE STAR SPECIALIST</span>
       </div><SectionHeader eyebrow="A focused specialism" title="Blue Star refrigeration, backed by decades of experience." lead="Alfa specialises in Blue Star refrigeration products, with more than 30 years of experience dealing with and servicing refrigeration equipment." light/><div className="bluestar-highlights" aria-label="Alfa refrigeration strengths"><div><strong>BLUE STAR</strong><span>Specialist focus</span></div><div><strong>30+ YEARS</strong><span>Refrigeration experience</span></div><div><strong>SALES → SERVICE</strong><span>Support across the equipment journey</span></div></div><Link to="/services" className="btn btn-light">Explore products and services <LuArrowRight size={18}/></Link></div>
