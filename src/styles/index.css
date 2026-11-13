@@ -3905,14 +3905,18 @@ p, li, dd, dt, label, small, address, figcaption, blockquote {
   }
 }
 
-/* As the mobile header slides away, let the Services quick-nav take its place. */
+/* On phones, the Services quick-nav slides away with the header when scrolling down,
+   and returns when the user scrolls back up. */
 @media (max-width: 899px) {
   .jump {
     top: var(--header-h);
-    transition: top .28s ease;
+    transition: top .28s ease, transform .28s ease, opacity .2s ease;
   }
   body.site-header-hidden .jump {
     top: 0 !important;
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
