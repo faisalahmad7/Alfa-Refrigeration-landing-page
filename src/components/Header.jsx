@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { LuMenu, LuX, LuPhone, LuClock, LuMapPin } from 'react-icons/lu';
 import Logo from './Logo.jsx';
-import { WhatsAppButton } from './ActionButtons.jsx';
+import { CallButton, WhatsAppButton } from './ActionButtons.jsx';
 import { business } from '../data/business.js';
 import { WA_GENERAL } from '../lib/contact.js';
 
@@ -68,7 +68,7 @@ export default function Header() {
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}${headerHidden && !open ? ' is-hidden-on-scroll' : ''}`}>
       <div className="container header-inner">
-        <Logo variant="light" />
+        <Logo variant="nav" />
 
         <nav className={`main-nav${open ? ' is-open' : ''}`} id="site-nav" aria-label="Main">
           <ul>
@@ -89,10 +89,7 @@ export default function Header() {
         </nav>
 
         <div className="header-cta">
-          <a className="header-phone" href={business.phoneHref}>
-            <LuPhone size={16} aria-hidden="true" />
-            <span>{business.phoneDisplay}</span>
-          </a>
+          <CallButton className="btn btn-light btn-sm" label="Call Now" />
           <WhatsAppButton className="btn btn-whatsapp btn-sm" message={WA_GENERAL} label="WhatsApp" />
         </div>
 

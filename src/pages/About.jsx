@@ -1,4 +1,5 @@
 import { LuSnowflake } from 'react-icons/lu';
+import founderPhoto from '../assets/augustine-lobo.webp';
 import CTABanner from '../components/CTABanner.jsx';
 import PageHero from '../components/PageHero.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -25,7 +26,10 @@ export default function About() {
       <section className="section">
         <div className="container about-vm">
           <Reveal className="vm-row">
-            <h2 className="vm-title">Our Vision</h2>
+            <div className="vm-head">
+              <span className="vm-index" aria-hidden="true">01</span>
+              <h2 className="vm-title">Our Vision</h2>
+            </div>
             <div className="vm-content">
               <p className="vm-lead">
                 To be Pune’s most trusted name in refrigeration and air-conditioning, keeping every
@@ -36,7 +40,10 @@ export default function About() {
           </Reveal>
 
           <Reveal className="vm-row" delay={60}>
-            <h2 className="vm-title">Our Mission</h2>
+            <div className="vm-head">
+              <span className="vm-index" aria-hidden="true">02</span>
+              <h2 className="vm-title">Our Mission</h2>
+            </div>
             <div className="vm-content">
               <p>
                 Alfa Refrigeration began in 1994 with a simple promise: do honest work and take care
@@ -49,8 +56,55 @@ export default function About() {
           </Reveal>
 
           <Reveal as="blockquote" className="vm-quote" delay={90}>
-            “Genuine work. Reliable service. Trusted since 1994.”
+            Genuine work. Reliable service. Trusted since 1994.
           </Reveal>
+        </div>
+      </section>
+
+      {/* FOUNDER'S NOTE */}
+      <section className="section section--tint founder" aria-labelledby="founder-title">
+        <div className="container founder-grid">
+          <Reveal className="founder-photo">
+            <img
+              src={founderPhoto}
+              alt="Augustine Lobo, founder of Alfa Refrigeration, smiling in a navy suit"
+              width="1000"
+              height="914"
+              loading="lazy"
+              decoding="async"
+            />
+          </Reveal>
+
+          <div className="founder-copy">
+            <Reveal delay={60}>
+              <p className="eyebrow">Meet our founder</p>
+              <h2 className="section-title" id="founder-title">Augustine Lobo</h2>
+              <p className="founder-role">Founder, Alfa Refrigeration · Since 1994</p>
+            </Reveal>
+            <Reveal className="founder-body" delay={120}>
+              <p>
+                Starting his refrigeration career at 17, Augustine Lobo founded Alfa Refrigeration
+                in 1994 at just 22 years old. What began with a team of three has grown into a
+                trusted business built on quality workmanship, honesty, and lasting customer
+                relationships.
+              </p>
+              <p>
+                With a partnership with Blue Star dating back to 1994, Alfa Refrigeration continues
+                to serve 30–40 customers daily through a dedicated team of experienced
+                professionals.
+              </p>
+              <p>
+                For Augustine, success has always been about quality service, customer
+                satisfaction, and trust.
+              </p>
+            </Reveal>
+            <Reveal as="figure" className="founder-quote" delay={180}>
+              <blockquote>
+                “A business grows when customers trust you and your people grow with you.”
+              </blockquote>
+              <figcaption>Augustine Lobo</figcaption>
+            </Reveal>
+          </div>
         </div>
       </section>
 
