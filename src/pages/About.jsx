@@ -19,8 +19,8 @@ export default function About() {
         title="30+ years of knowing refrigeration inside out."
         crumb="About"
         lead="Alfa Refrigeration and Air Conditioner deals in and services commercial and residential refrigeration in Pune."
-        art="fridge"
-        artLabel="Illustration of a commercial stainless-steel refrigerator"
+        art="fridgeopen"
+        artLabel="Illustration of a refrigerator with its left door open, showing a stocked, lit interior, and its right door closed"
       />
 
       <section className="section">

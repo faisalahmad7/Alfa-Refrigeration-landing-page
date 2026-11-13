@@ -17,6 +17,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [headerHidden, setHeaderHidden] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const headerRef = useRef(null);
   const lastScrollY = useRef(0);
   const { pathname } = useLocation();
 
@@ -54,6 +56,25 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [open, pathname]);
 
+  // Solid white while the first section (hero) is behind the header;
+  // translucent once that section has scrolled past.
+  useEffect(() => {
+    const updatePastHero = () => {
+      const hero = document.querySelector('.hero--editorial, .page-hero');
+      const headerH = headerRef.current ? headerRef.current.offsetHeight : 0;
+      setPastHero(hero ? hero.getBoundingClientRect().bottom <= headerH : window.scrollY > 8);
+    };
+
+    const frame = window.requestAnimationFrame(updatePastHero);
+    window.addEventListener('scroll', updatePastHero, { passive: true });
+    window.addEventListener('resize', updatePastHero);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updatePastHero);
+      window.removeEventListener('resize', updatePastHero);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     document.body.classList.toggle('menu-open', open);
     if (!open) return undefined;
@@ -66,7 +87,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' menu-visible' : ''}${headerHidden && !open ? ' is-hidden-on-scroll' : ''}`}>
+    <header ref={headerRef} className={`site-header${scrolled ? ' is-scrolled' : ''}${pastHero ? ' is-past-hero' : ''}${open ? ' menu-visible' : ''}${headerHidden && !open ? ' is-hidden-on-scroll' : ''}`}>
       <div className="container header-inner">
         <Logo variant="nav" />
 

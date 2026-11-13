@@ -235,6 +235,69 @@ function Dispenser() {
   );
 }
 
+function WideDispenser() {
+  const taps = [
+    { x: 78, colour: '#ff8a65' },
+    { x: 120, colour: '#aab8c4' },
+    { x: 162, colour: '#35c3e8' },
+  ];
+  const bubbles = [
+    { cx: 76, cy: 100, r: 2.2, d: '0s' },
+    { cx: 100, cy: 102, r: 1.7, d: '.8s' },
+    { cx: 124, cy: 99, r: 2.6, d: '1.6s' },
+    { cx: 150, cy: 102, r: 1.9, d: '2.3s' },
+    { cx: 170, cy: 100, r: 2.3, d: '1.1s' },
+  ];
+  return (
+    <g>
+      <Shadow rx={104} />
+      {/* wide bottom-loading cabinet */}
+      <rect x="30" y="22" width="180" height="258" rx="14" fill="url(#a-white)" />
+      <rect x="30" y="22" width="180" height="30" rx="13" fill="url(#a-steel)" />
+      <Led cx={50} cy={37} r={2.4} />
+      <rect x="64" y="33" width="46" height="8" rx="2.5" fill="#7fe6ff" opacity=".85" />
+      <rect x="120" y="33" width="28" height="8" rx="2.5" fill="#7fe6ff" opacity=".45" />
+      {/* built-in water level window (no external bottle) */}
+      <clipPath id="wd-window"><rect x="52" y="62" width="136" height="44" rx="8" /></clipPath>
+      <rect x="52" y="62" width="136" height="44" rx="8" fill="#0f2a44" />
+      <g clipPath="url(#wd-window)">
+        <rect x="52" y="62" width="136" height="44" fill="url(#a-bottle)" />
+        <path d="M52 78 Q86 72 120 78 T188 78 L188 106 L52 106 Z" fill="#e9f9ff" opacity=".3" />
+        {bubbles.map((b, i) => (
+          <circle key={i} className="bottle-bubble" style={{ '--bubble-delay': b.d }} cx={b.cx} cy={b.cy} r={b.r} fill="#fff" />
+        ))}
+        <path d="M60 68 H110" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity=".55" />
+      </g>
+      <rect x="52" y="62" width="136" height="44" rx="8" fill="none" stroke="#0a2038" strokeWidth="3" />
+      {/* tap bay: hot, ambient, cold */}
+      <rect x="46" y="114" width="148" height="70" rx="8" fill="#12304f" />
+      {taps.map((t) => (
+        <g key={t.x}>
+          <circle cx={t.x} cy="125" r="3.2" fill={t.colour} />
+          <path d={`M${t.x - 7} 133h14v6l-3.5 6h-7l-3.5-6z`} fill="url(#a-steel)" />
+        </g>
+      ))}
+      {/* cup + flowing water from the middle tap */}
+      <path d="M108 160 L132 160 L128 184 L112 184 Z" fill="#f4fbff" opacity=".92" />
+      <path d="M108 160 L132 160 L131 166 L109 166 Z" fill="#bfeaf8" opacity=".9" />
+      <path className="water-stream water-stream--dispenser" d="M120 147 C119 151 122 155 120 162" fill="none" stroke="#72d8f5" strokeWidth="2.2" strokeLinecap="round" />
+      <circle className="water-drop water-drop--dispenser" cx="120" cy="155" r="2.2" fill="#86e5ff" />
+      <path className="water-ripple water-ripple--dispenser" d="M111 166 Q120 163 129 166" fill="none" stroke="#72d8f5" strokeWidth="1.4" strokeLinecap="round" />
+      {/* drip tray */}
+      <rect x="56" y="184" width="128" height="9" rx="3.5" fill="url(#a-steel)" />
+      {/* bottom-loading door with vents */}
+      <rect x="46" y="204" width="148" height="66" rx="7" fill="#dbe5ec" />
+      <rect x="104" y="211" width="32" height="4" rx="2" fill="#8a9aa8" />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <rect key={i} x="62" y={228 + i * 8} width="116" height="3" rx="1.5" fill="#b3c2ce" />
+      ))}
+      <rect x="40" y="278" width="20" height="7" rx="2" fill="#25384a" />
+      <rect x="180" y="278" width="20" height="7" rx="2" fill="#25384a" />
+      <Sheen x={30} y={22} w={180} h={258} r={14} />
+    </g>
+  );
+}
+
 function Fridge() {
   return (
     <g>
@@ -256,6 +319,69 @@ function Fridge() {
       <circle cx="58" cy="278" r="5" fill="#101e2c" />
       <circle cx="182" cy="278" r="5" fill="#101e2c" />
       <Sheen x={42} y={18} w={156} h={258} r={9} />
+    </g>
+  );
+}
+
+function FridgeOpen() {
+  const shelves = [88, 130, 172, 214];
+  const doorBins = [0.28, 0.5, 0.72].map((t) => ({ yf: 20 + 256 * t, yh: 30 + 236 * t }));
+  const fruit = ['#ff8a65', '#ffd166', '#7bd88f', '#ff8a65', '#ffd166'];
+  return (
+    <g transform="translate(18 0)">
+      <Shadow rx={104} />
+      <ellipse cx="120" cy="150" rx="112" ry="128" fill="url(#a-glow)" opacity=".32" />
+      {/* cabinet shell */}
+      <rect x="52" y="18" width="136" height="258" rx="9" fill="url(#a-steel)" />
+      <rect x="52" y="18" width="136" height="24" rx="8" fill="#14304d" />
+      <Led cx={66} cy={30} r={2.4} />
+      <rect x="82" y="26" width="34" height="8" rx="2" fill="#7fe6ff" opacity=".85" />
+      {/* lit interior */}
+      <rect x="60" y="46" width="120" height="222" rx="4" fill="#eaf6fb" />
+      <rect x="60" y="46" width="120" height="222" rx="4" fill="url(#a-glow)" opacity=".55" />
+      {shelves.map((y, si) => (
+        <g key={y}>
+          {si === 0 && bottleColours.map((c, i) => (
+            <rect key={i} x={65 + i * 19} y={y - 28} width="12" height="28" rx="4" fill={c} opacity=".95" />
+          ))}
+          {si === 1 && [0, 1, 2, 3].map((i) => (
+            <rect key={i} x={66 + i * 28} y={y - 22} width="22" height="22" rx="3" fill={['#cfe3ee', '#4cb3c9', '#e9f4f9', '#3d8fbd'][i]} />
+          ))}
+          {si === 2 && fruit.map((c, i) => (
+            <circle key={i} cx={74 + i * 22} cy={y - 8} r="8" fill={c} opacity=".95" />
+          ))}
+          {si === 3 && [0, 1, 2].map((i) => (
+            <rect key={i} x={66 + i * 38} y={y - 26} width="32" height="26" rx="4" fill={['#1f5f8c', '#e9f4f9', '#2b78a8'][i]} />
+          ))}
+          <rect x="60" y={y} width="120" height="4" fill="#bfe0ee" />
+          <rect x="60" y={y} width="120" height="1.5" fill="#fff" opacity=".85" />
+        </g>
+      ))}
+      <rect x="62" y="236" width="116" height="28" rx="3" fill="#cfe3ee" />
+      <rect x="104" y="242" width="32" height="4" rx="2" fill="#8a9aa8" />
+      {/* cold air spilling out */}
+      <g className="cooling-air" fill="none" stroke="#8cdff7" strokeWidth="2" strokeLinecap="round">
+        <path d="M70 272 C52 278 32 272 8 280" />
+      </g>
+      {/* left door open, swung out towards the viewer; right door closed */}
+      <polygon points="56,30 16,20 16,276 56,266" fill="url(#a-white)" stroke="#8a97a3" strokeWidth="1" />
+      <polygon points="52,36 24,28 24,268 52,259" fill="#c3d2dc" opacity=".7" />
+      {doorBins.map((b, i) => (
+        <g key={i}>
+          <line x1="22" y1={b.yf} x2="54" y2={b.yh} stroke="#f4fbff" strokeWidth="5" strokeLinecap="round" />
+          <line x1="22" y1={b.yf + 3} x2="54" y2={b.yh + 3} stroke="#9fb2c0" strokeWidth="1.5" opacity=".7" />
+        </g>
+      ))}
+      <polygon points="56,30 16,20 16,276 56,266" fill="url(#a-sheen)" />
+      {/* closed right door */}
+      <rect x="122" y="46" width="62" height="222" rx="4" fill="url(#a-steel)" stroke="#8a97a3" strokeWidth="1" />
+      {[0, 1, 2, 3].map((i) => (
+        <rect key={i} x={170 - i * 12} y="52" width="1.4" height="210" fill="#fff" opacity=".35" />
+      ))}
+      <rect x="128" y="100" width="6" height="110" rx="3" fill="#33485c" />
+      <rect x="122" y="46" width="62" height="222" rx="4" fill="url(#a-sheen)" />
+      <circle cx="64" cy="280" r="5" fill="#101e2c" />
+      <circle cx="176" cy="280" r="5" fill="#101e2c" />
     </g>
   );
 }
@@ -314,7 +440,9 @@ const PRODUCTS = {
   ice: IceMachine,
   cooler: Cooler,
   dispenser: Dispenser,
+  widedispenser: WideDispenser,
   fridge: Fridge,
+  fridgeopen: FridgeOpen,
   split: Split,
   window: Window,
 };

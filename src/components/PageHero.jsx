@@ -19,7 +19,7 @@ export default function PageHero({ title, lead, crumb, art, artLabel }) {
     }, el);
     return () => ctx.revert();
   }, []);
-  return <section className="page-hero" ref={root}>
+  return <section className="page-hero" data-art={art} ref={root}>
     <div className="page-hero-gridlines" aria-hidden="true" />
     <div className="container page-hero-grid">
       <div className="page-hero-copy">

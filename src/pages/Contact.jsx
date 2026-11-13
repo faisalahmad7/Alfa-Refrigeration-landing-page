@@ -87,8 +87,8 @@ export default function Contact() {
         title="Let’s talk about your refrigeration."
         crumb="Contact"
         lead="Call, message or visit. If you have already decided to enquire, everything you need is on this page."
-        art="cooler"
-        artLabel="Illustration of a floor-standing water cooler"
+        art="widedispenser"
+        artLabel="Illustration of a wide floor-standing water dispenser with built-in water window"
       />
 
       <section className="section contact-section">

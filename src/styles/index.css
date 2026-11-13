@@ -4313,3 +4313,108 @@ h1, h2 { text-wrap: balance; }
   color: #35c3e8; opacity: .85;
 }
 @media (prefers-reduced-motion: reduce) { .about-vm .vm-row { transition: none; } }
+
+
+/* ==========================================================================
+   WHITE TRANSLUCENT HEADER (safe to delete this whole block to revert)
+   Fully white while the first section (hero) is behind the header; once that
+   section has scrolled past (.is-past-hero) the bar turns frosted and
+   translucent.
+   ========================================================================== */
+.site-header,
+.site-header.is-scrolled {
+  color: var(--ink);
+  background: #fff;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 1px 0 rgba(10, 32, 56, .08);
+}
+.site-header.is-scrolled { box-shadow: 0 1px 0 rgba(10, 32, 56, .08), 0 10px 30px rgba(3, 15, 28, .12); }
+.site-header.is-scrolled.is-past-hero {
+  background: #fff;
+}
+
+/* logo: no plate, border or shadow, so it blends into the bar as part of it.
+   multiply drops the logo's white background, even when the bar is translucent. */
+.site-header .logo-img {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  mix-blend-mode: multiply;
+}
+
+/* header buttons */
+.site-header .btn-light {
+  background: #f1f8fc;
+  color: #082d4b;
+  border: 1px solid rgba(8, 45, 75, .18);
+}
+.site-header .btn-light:hover { background: #0b3554; color: #fff; }
+
+/* desktop links (the phone menu panel keeps its own dark styling) */
+@media (min-width: 900px) {
+  .main-nav a:not(.btn) { color: rgba(10, 32, 56, .75); }
+  .main-nav a:not(.btn):hover,
+  .main-nav a.active { color: var(--ink); }
+  .main-nav a:not(.btn)::after { background: var(--accent); }
+}
+
+/* phones: menu button and the open-menu bar */
+@media (max-width: 899px) {
+  .site-header .menu-toggle {
+    background: rgba(10, 32, 56, .06);
+    border: 1px solid rgba(10, 32, 56, .22);
+    color: var(--ink);
+    box-shadow: none;
+  }
+  .site-header.menu-visible {
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(10, 32, 56, .1);
+  }
+  .site-header .menu-toggle:focus-visible { outline: 3px solid var(--accent); }
+}
+
+
+/* ==========================================================================
+   LARGER HERO ARTWORK ON THE SERVICES, ABOUT AND CONTACT PAGES (desktop and tablet only;
+   delete this block to revert). Phones keep their compact sizes.
+   ========================================================================== */
+@media (min-width: 900px) {
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-grid { grid-template-columns: 1.05fr .95fr; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art-wrap { min-height: 500px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art {
+    width: min(100%, 520px);
+    max-width: 520px;
+    height: 490px;
+  }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art .product-art { height: 100%; max-height: 490px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-orbit--one { width: 440px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-orbit--two { width: 335px; }
+}
+@media (min-width: 640px) and (max-width: 899px) {
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art-wrap { min-height: 380px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art { height: 370px; max-width: 400px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-art .product-art { max-height: 370px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-orbit--one { width: 320px; }
+  .page-hero:is([data-art="visi"], [data-art="fridge"], [data-art="fridgeopen"], [data-art="widedispenser"]) .page-hero-orbit--two { width: 245px; }
+}
+
+
+/* Water bottle bubbles on the wide dispenser illustration */
+.bottle-bubble {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bottle-bubble-rise 3.4s ease-in infinite;
+  animation-delay: var(--bubble-delay, 0s);
+}
+@keyframes bottle-bubble-rise {
+  0%   { opacity: 0;   transform: translateY(8px) scale(.6); }
+  20%  { opacity: .85; }
+  80%  { opacity: .45; }
+  100% { opacity: 0;   transform: translateY(-34px) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bottle-bubble { animation: none !important; opacity: .5; }
+}
